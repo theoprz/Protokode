@@ -1,10 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const map = require('../map.json');
 
 router.get('/', function(req, res, next) {
     res.render('game', {
         title: 'Game',
-        name: 'Test'
+        name: 'Test',
+        map: map
     });
 });
 
