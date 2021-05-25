@@ -5,15 +5,18 @@ let config = {
     height: 1000,
     backgroundColor: '#56a5e2',
     parent: 'content',
-    dom: {
+    /*dom: {
         createContainer: true
-    },
+    },*/
     scene: {
         preload: preload,
         create: create
     }
 };
+
+
 alert("Ce jeu est encore en cours de développement")
+
 
 let game = new Phaser.Game(config);
 
@@ -76,15 +79,16 @@ function create ()
         gameObject.y = posy;
 
     });
+
+    /*
     let style = {
         'background-color': 'black',
         'width': '220px',
         'height': '100px',
         'font': '48px Arial',
         'font-weight': 'bold'
-    };
-
+    }; 
     
-
-    
+    let element = this.add.dom(400, 300, 'content', style);
+*/
 }
