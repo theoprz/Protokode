@@ -1,9 +1,13 @@
+
 let config = {
     type: Phaser.AUTO,
     width: 1000,
     height: 1000,
     backgroundColor: '#56a5e2',
-    parent: 'phaser-example',
+    parent: 'content',
+    dom: {
+        createContainer: true
+    },
     scene: {
         preload: preload,
         create: create
@@ -12,6 +16,8 @@ let config = {
 alert("Ce jeu est encore en cours de développement")
 
 let game = new Phaser.Game(config);
+
+
 
 function preload ()
 {
@@ -70,4 +76,15 @@ function create ()
         gameObject.y = posy;
 
     });
+    let style = {
+        'background-color': 'black',
+        'width': '220px',
+        'height': '100px',
+        'font': '48px Arial',
+        'font-weight': 'bold'
+    };
+
+    
+
+    
 }
