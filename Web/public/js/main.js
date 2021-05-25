@@ -1,17 +1,26 @@
+
 let config = {
     type: Phaser.AUTO,
     width: 1000,
     height: 1000,
     backgroundColor: '#56a5e2',
-    parent: 'phaser-example',
+    parent: 'content',
+    /*dom: {
+        createContainer: true
+    },*/
     scene: {
         preload: preload,
         create: create
     }
 };
+
+
 alert("Ce jeu est encore en cours de développement")
 
+
 let game = new Phaser.Game(config);
+
+
 
 function preload ()
 {
@@ -27,10 +36,10 @@ function create ()
     let glass3 = this.add.image(0, 0, 'buttonBG');
     let glass4 = this.add.image(0, 0, 'buttonBG');
 
-    let container = this.add.container(72, 234, [ glass11 ]);
-    let container2 = this.add.container(272, 234, [ glass2 ]);
-    let container3 = this.add.container(472, 234, [ glass3 ]);
-    let container4 = this.add.container(672, 234, [ glass4 ]);
+    let container = this.add.container(150, 234, [ glass11 ]);
+    let container2 = this.add.container(383, 234, [ glass2 ]);
+    let container3 = this.add.container(621, 234, [ glass3 ]);
+    let container4 = this.add.container(855, 234, [ glass4 ]);
 
     container.setSize(glass11.width, glass11.height);
     container2.setSize(glass2.width, glass2.height);
@@ -70,4 +79,16 @@ function create ()
         gameObject.y = posy;
 
     });
+
+    /*
+    let style = {
+        'background-color': 'black',
+        'width': '220px',
+        'height': '100px',
+        'font': '48px Arial',
+        'font-weight': 'bold'
+    }; 
+    
+    let element = this.add.dom(400, 300, 'content', style);
+*/
 }

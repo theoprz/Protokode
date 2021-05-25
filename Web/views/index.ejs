@@ -14,53 +14,48 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header>
     <%- include('templates/header.ejs'); %>
-</header>
+    <main>
+        <h1>Water sort puzzle</h1>
 
-<main>
-    <h1>Water sort puzzle</h1>
+        <div class="quotes">
+            <div class="card">
+                <div class="box box1">
+                    <h2>Description of the game</h2>
+                    <p class="cube">Water Sort puzzle is a puzzle game where the goal is to collect liquids of the same color in a tube.</p>
+                </div>
+                <div class="bg">
+                </div>
+            </div>
+            <div class="card">
+                <div class="box box2">
+                    <h2>How to play </h2>
+                            <ul class="cube">
+                                <li>Slide any glass to another glass where it is possible to pour in order to pour water into it.</li>
+                                <li>The rule is that you can only pour the water if it is linked to the same color and there’re enough space on the glass.</li>
+                                <li>Try not to get stuck - but don’t worry, you can always restart the level at any time.</li>
+                            </ul>
+                </div>
+                <div class="bg">
+                </div>
+            </div>
+            <div class="card">
+                <div class="box box3">
+                    <h2>Rules </h2>
+                            <ul class="cube">
+                                <li> Only one element can be move. </li>
+                                <li> Only elements of the same color can be assembled </li>
+                            </ul>
 
-    <div class="quotes">
-        <div class="card">
-            <div class="box box1">
-                <h2>Description of the game</h2>
-                <p>Water Sort puzzle is a puzzle game where the goal is to collect liquids of the same color in a tube.</p>
+                </div>
+                <div class="bg">
+                </div>
             </div>
-            <div class="bg">
-            </div>
-        </div>
-        <div class="card">
-            <div class="box box2">
-                <h2>How to play </h2>
-                        <ul>
-                            <li>Slide any glass to another glass where it is possible to pour in order to pour water into it.</li>
-                            <li>The rule is that you can only pour the water if it is linked to the same color and there’re enough space on the glass.</li>
-                            <li>Try not to get stuck - but don’t worry, you can always restart the level at any time.</li>
-                        </ul>
-            </div>
-            <div class="bg">
-            </div>
-        </div>
-        <div class="card">
-            <div class="box box3">
-                <h2>Rules </h2>
-                        <ul>
-                            <li> Only one element can be move. </li>
-                            <li> Only elements of the same color can be assembled </li>
-                        </ul>
+    </div>
+    <div class="press-start"><figure class="aligncenter size-full"><a href="/game"><img src="img/press-start.gif" alt="press start" class="press start"/></a></figure></div>
+    </main>
 
-            </div>
-            <div class="bg">
-            </div>
-        </div>
-  </div>
-  <div class="press-start"><figure class="aligncenter size-full"><a href="/game"><img src="img/press-start.gif" alt="press start" class="press start"/></a></figure></div>
-</main>
-
-<footer>
-    <%- include('templates/footer.ejs'); %>
-</footer>
+<%- include('templates/footer.ejs'); %>
 <p class="copyright"> &copy; PROJECT realised by Théo P, Théo D, Eliot, Djallal, Corentin and Quentin.</p>
 </body>
 </html>
