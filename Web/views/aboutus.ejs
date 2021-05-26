@@ -3,27 +3,32 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <title>Test</title>
+    <title>Protokode</title>
     <meta name="description" content="test">
 	<!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/65f54486e0.js" crossorigin="anonymous"></script>
     <!-- Google Fonts -->
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
-
     <!-- CSS perso -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header>
     <%- include('templates/header.ejs'); %>
-</header>
+
 <main>
-    <p>aboutus</p>
-</main>
-<footer>
+    <div class="about">
+            <div class="card">
+                <div class="box box1">
+                    <h2>Who are we</h2>
+                    <p>We are six students Théo.D, Théo.P, Quentin, Djallal, Eliot and Corentin  in our first year at ISEN. Our project consists in creating a logic game presented in the <span><a href="/index">Home</a></span></p>
+                </div>
+                <div class="bg">
+                </div>
+            </div>
+    </div>
+</main> 
+
     <%- include('templates/footer.ejs'); %>
-</footer>
 <p class="copyright"> &copy; PROJECT realise by Théo P, Théo D, Eliot, Djallal, Corentin and Quentin.</p>
 </body>
 </html>

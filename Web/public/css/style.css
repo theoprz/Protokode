@@ -197,7 +197,7 @@ h1 {
 .quotes .box {
     position: relative;
     width: 25vw;
-    height: 50vh;
+    height: 55vh;
     min-height: 320px;
     background: white;
     overflow: hidden;
@@ -211,7 +211,7 @@ h1 {
 .quotes .box .cube {
     margin: 0;
     padding: 10px;
-    padding-top: 50px;
+    padding-top: 40px;
     font-size: 1.2rem;
 }
   
@@ -227,18 +227,6 @@ h1 {
     color: #f2f2f2;
     box-shadow: 20px 50px 100px rgba(0, 0, 0, 0.5);
 }
-
-.quotes .bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    opacity: 0;
-    transition: all 0.5s ease-in;
-    pointer-events: none;
-    overflow: hidden;
-}
-  
   
 .quotes .box.box1:hover,
 .quotes .box.box1:hover~.bg {
@@ -270,6 +258,77 @@ h1 {
 .press-start img {
   width: 30vw;
   height: auto;
+}
+
+/*about US*/
+.about {
+  width: 95vw;
+  min-height: 400px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 2;
+  margin-top:150px;
+  margin-bottom: 150px;
+  margin-left: 40px;
+}
+
+.about .box {
+  width: 50vw;
+  height: 50vh;
+  min-height: 320px;
+  background: white;
+  overflow: hidden;
+  transition: all 0.5s ease-in;
+  z-index: 2;
+  box-sizing: border-box;
+  padding: 30px;
+  box-shadow: -10px 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.about .box p {
+  margin: 50px;
+  padding: 10px;
+  padding-top: 30px;
+  font-size: 1.2rem;
+}
+
+.about .box h2 {
+  margin: 0;
+  padding: 0;
+  top: 10%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.about .box:hover {
+  color: #f2f2f2;
+  box-shadow: 20px 50px 100px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.about .bg {
+  position: absolute;
+  top: 3;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.5s ease-in;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+.about .box.box1:hover,
+.about .box.box1:hover~.bg {
+opacity: 1;
+background: #e2a9e5;
+background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+}
+
+.about .box a {
+  text-decoration: none;
+  color: #000000;
 }
 
 
@@ -348,20 +407,19 @@ footer {
   top: 0;
 }
 
-.footer-reseaux ul li:nth-child(2) a:before{
+.footer-reseaux ul li:nth-child(1) a:before{
   background: #3b5999;
 }
 
-.footer-reseaux ul li:nth-child(3) a:before{
+.footer-reseaux ul li:nth-child(2) a:before{
   background: red;
 }
 
-.footer-reseaux ul li:nth-child(4) a:before {
+.footer-reseaux ul li:nth-child(3) a:before {
 	background: #309ef8;
-  
 }
 
-.footer-reseaux ul li:nth-child(5) a:before {
+.footer-reseaux ul li:nth-child(4) a:before {
   background: orange;
 }
 
@@ -606,12 +664,20 @@ footer {
   }
 
   .container-page {
-  padding-top: 30px;
   padding-left: 20vw;
   }
 
   .quotes .box {
   height: 20vh;
+  }
+
+  .about .box {
+    height: 25vh;
+  }
+
+  .about {
+    margin: 50px 0;
+    padding-bottom: 0px;
   }
 }
 
@@ -621,33 +687,71 @@ footer {
   .header-logo {
     display: none;
   }
-
+ 
   .container-page {
-    padding-top: 30px;
-    padding-left: 20vw;
     margin-top: 0vw;
-    margin-left: 2vw;
     margin-bottom: 1vw;
-    margin-right: 2vw;
+    padding-left: 0;
   }
-  
- .quotes{
-   flex-direction: column;
-   justify-content: flex-end;
-   display: flex;
-   padding: 15%;
-   flex-basis: 100%;
+
+  .quotes {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+    padding: auto 0;
  }
 
  .quotes .box {
    width: 70vw;
-   height: 100vw;
-   box-shadow: none;
+   height: 30vh
+ }
+ 
+ .box.box1, .box.box2, .box.box3 {
+   margin: 30px 0;
  }
 
- .quotes .box:hover{
-   display : none;
+ .about {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    margin: auto 0;
+    padding: auto 0;
  }
+
+ .about .box {
+  width: 70vw;
+  height: 40vh;
+  margin: 50px 0;
+ }
+
+ .about .box p {
+    margin: 0 0;
+    padding: 0 0;
+ }
+
+ .about .box h2 {
+    padding-bottom: 40px;
+ }
+
+ .footer-container {
+   flex-direction: column;
+   text-align: center;
+ }
+
+ .footer-reseaux li {
+   display: inline;
+   text-align: center;
+ }
+
+ .footer-reseaux ul {
+   flex-direction: row;
+ }
+  
+ .container-image  {
+   display: none;
+ }
+ 
 }
 
 /*STYLE DU JEU TEST*/
