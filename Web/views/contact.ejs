@@ -11,15 +11,35 @@
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
     <!-- CSS perso -->
     <link rel="stylesheet" href="css/style.css">
-    <!--Js-contact-->
-    <script type="text/javascript" src="js/contact.js"></script>
-</head>
+    </head>
 <body>
     <%- include('templates/header.ejs'); %>
 
 <body>
     <main>
-        <h1>Formulaire de contact</h1> <!--
+        <h1>Formulaire de contact</h1> 
+        
+        
+        <form action="<%= action %>" method="post">
+  
+        <% if (fields.length) { %>
+            <% fields.forEach(function(field){ %>
+                <label><%= field.name %></label>
+                <input type="<%= field.type %>" name="<%= field.name %>" <% if (field.property) { %> <%= field.property %> <% } %> >
+            <% }) %>
+        <% } %>
+
+<button type="submit"><%= title %></button> <!--Title for button is same as that of the page-->
+</form>
+
+        
+        
+        
+        
+        
+        
+        
+        <!--
         <form action="/signup" onsubmit="return validateForm()" method="post" id="signup">
             <table class="form-style">
                 <tr>
@@ -63,8 +83,8 @@
                 </td>
                 </tr>
             </table>
-        </form>
-        -->
+        </form>-->
+        
         <!--
         <form action="/signup" method="post" id="signup">
             <h1>Sign Up</h1>
@@ -74,11 +94,11 @@
             <input type="text" placeholder="Email Address">
             <input type="submit" value="Subscribe">
         </form>
-        -->
+        
         <form method="post" action="/signup">
             p1=<input type="text" name="p1">
             <input type="submit" value="post">
-        </form>
+        </form>-->
     </main>
 
 <%- include('templates/footer.ejs'); %>

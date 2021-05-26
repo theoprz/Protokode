@@ -1,11 +1,17 @@
 const express = require('express');
-const router = express.Router();
+var bodyParser = require('body-parser');
+const app = express();
 
-router.get('/', function(req, res, next) {
+app.use(bodyParser.json())
+
+app.post('/', function(req, res, next) {
     res.render('signup', {
         title: 'Sign Up',
         name: 'Test'
     });
-});
+    console.log(req.body.email);
+    console.log(req.body.name);
+    console.log(req.body.message);
+})
 
-module.exports = router;
+module.exports = app;
