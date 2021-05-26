@@ -23,10 +23,10 @@
 
 
 
-        function isWin(tab) { // We check if is win
+        function isWin(tab, nbFlasks) { // We check if is win
                 let isWin = true;
-                for (let i = 0; i < tab.length; i++) {
-                    for (let j = 0; j < tab.length; j++) {
+                for (let i = 0; i < nbFlasks; i++) {
+                    for (let j = 0; j < 4; j++) {
                         if (j === 0) {
                             tmp = tab[i][j];
                         }
@@ -98,7 +98,6 @@
                     }
                 }
 
-                console.log("nbx", nbx, "nbX", nbX, "colorx", colorx, "colorX", colorX)
                 if (nbx > nbX || (colorx != colorX && colorX != 0)) {    // If more color than free space, don't execute and set return value to false
                     result = false;                                   // if colors not same we also return false
                 }
@@ -122,7 +121,6 @@
                 data.flasks =<%= JSON.stringify(map.flasks) %>;
                 data.nbColors =<%= JSON.stringify(map.nbColors) %>;
                 data.nbFlasks =<%= JSON.stringify(map.nbFlasks) %>;
-                console.log(data);
                 return data;
             }
             
