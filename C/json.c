@@ -45,14 +45,14 @@ int main(void)
 
     for(int i = 0; i<fiole;i++){
         for(int j=0; j<4;j++){
-            json_object_set_int(step[i][j], tabFioles[i][j]);
+            json_object_set_int(step[i][j], tabFioles[i][j]); // Sending tabFioles into the json
         }
     }
     
 
     printf("The json file:\n\n%s\n\n", json_object_to_json_string_ext(root, JSON_C_TO_STRING_PRETTY));
 
-    json_object_to_file(filename, root);
+    json_object_to_file(filename, root); // saving the json to map.json
     json_object_put(root);
     return 0;
 }
