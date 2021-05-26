@@ -3,13 +3,32 @@
 
 int main() {
 
-	pile* stack;
-	newpile(&stack, 4);
-	push(stack, 0);
-	push(stack, 1);
-	push(stack, 2);
-	push(stack, 3);
-	afficherpile(stack);
+	int colonne = 0;
+	int colempty = 0;
+	pile* pile;
+
+
+	do {
+		printf(" Entrez le nombre de colonne (max 10): ");
+		scanf_s("%d", &colonne);
+
+	} while (colonne < 2);
+
+	if (colonne < 7 && colonne >= 5) {
+		colempty = 2;
+	}
+	else if (colonne >= 7) {
+		colempty = 3;
+	}
+	else {
+		colempty = 1;
+	}
+
+	printf("Il y aura %d fioles vides \n", colempty);
+	
+	
+	perfpile(colonne, colempty);
+	emptypile(colempty);
 
 
 
@@ -107,7 +126,7 @@ int affichtab(int tab[10][10], int sizex, int sizey) {
 	return 0;
 }
 
-int randomtab(int tab[10][10], int sizex, int sizey) {
+/*int randomtab(int tab[10][10], int sizex, int sizey) {
 	int tmp[10] = { 0 };
 	int nbColColored = sizey - emptycol(sizey);
 	for (int i = 0; i < 4; i++) {
@@ -116,7 +135,9 @@ int randomtab(int tab[10][10], int sizex, int sizey) {
 		}
 	}
 	return 0;
-}	
+}*/
+
+
 
 bool isWin(int tab[10][10], int sizex, int sizey) {
 
@@ -205,19 +226,32 @@ bool isFull(int tab[10][10], int pos) {
 	}
 }
 
-int emptycol(int sizey) {
-	int vide = 0;
+int emptypile(int emptycol) {
 
-	if (sizey < 7 && sizey >= 5) {
-		vide = 2;
+	pile* pilevide;
+
+	for (int i = 0; i < emptycol; i++) {
+		newpile(&pilevide, 4);
+		afficherpile(pilevide);
 	}
-	else if(sizey >= 7) {
-		vide = 3;
+
+	return 0;
+}
+
+int perfpile(int nbPiles, int nbPileVides) {
+	int val = 0;
+	pile* pile;
+	int coloredstack = nbPiles - nbPileVides;
+	
+	for (int i = 0; i < coloredstack; i++) {
+		newpile(&pile, 4);
+		val++;
+		for (int j = 0; j < 4; j++) {
+			push(pile, val);
+		}
+		afficherpile(pile);	
 	}
-	else {
-		vide = 1;
-	}
-	return vide;
+	return 0;
 }
 
 void newpile(pile** s, int initialpileSize) {
