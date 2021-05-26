@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
-    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width" />
     <title>Test du jeu.</title>
     <style>
-        *{-webkit-tap-highlight-color: rgba(0, 0, 0, 0);}
+        * {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
     </style>
     <script type="text/javascript" src="js/phaser.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 </head>
+
 <body>
-<div id="gameCanvas">
-</div>
+    <script> let test = <%= map.nbColors %></script>
+    <div id="gameCanvas">
+    </div>
+    <script>console.log(test);</script>
 </body>
+
 </html>
