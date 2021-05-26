@@ -80,15 +80,4 @@ function create ()
 
     });
 
-    /*
-    let style = {
-        'background-color': 'black',
-        'width': '220px',
-        'height': '100px',
-        'font': '48px Arial',
-        'font-weight': 'bold'
-    }; 
-    
-    let element = this.add.dom(400, 300, 'content', style);
-*/
 }

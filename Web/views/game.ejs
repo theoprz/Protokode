@@ -23,81 +23,92 @@
 
 
 
-        function isWin(tab, nbFlasks) { // We check if is win
+        function isWin(tab) { // We check if is win
                 let isWin = true;
-                for (let i = 0; i < nbFlasks; i++) {
-                    for (let j = 0; j < 4; j++) {
+                for (let i = 0; i < tab.length; i++) {
+                    for (let j = 0; j < tab.length; j++) {
                         if (j === 0) {
                             tmp = tab[i][j];
                         }
-                        if (tab[i][j] != tmp) {
-                            isWin = false;
+                    }
+                    return isWin;
+                }
+
+                function isFull(tab, x) {
+                    let isFull = true;
+                    if (tab[x][0] === 0) {
+                        isFull = false
+                    }
+                    return isFull;
+                }
+
+                function isSolvable(tab, nbColors, nbFlasks) {
+                    let isSolvable = true;
+                    if (nbColors >= nbFlasks) { // Add count colors
+                        isSolvable = false;
+                    }
+                    return isSolvable;
+                }
+
+                function translate(tab, nbFlasks, x, X) {
+                    let tmp = 0;
+                    let nbx = 0; // Number of color to move from x
+                    let start; // index of first color encountered
+                    let colorx; // color of x
+                    let nbX = 0;
+                    let colorX = 0;
+                    let result;// return value
+                    let bool = true;// do i loop the first loop ?
+
+                    if (x >= nbFlasks || X >= nbFlasks) {
+                        return false;
+                    }
+
+                    for (let i = 0; i < 4 && bool === true; i++) {
+                        if (i === 0) {  // first iteration
+                            if (tab[x][0] != 0) { // If not 0, set tmp and start
+                                tmp = tab[x][0];
+                                start = 0;
+                            }
+                        }
+                        if (tmp === 0 && tab[x][i] != tmp) {  // If First color encountered after a 0
+                            tmp = tab[x][i]               // set tmp and start
+                            colorx = tmp;
+                            start = i;
+                        }
+                        else if (tab[x][i] != tmp || i === 3) {        // If second color encountered or end of loop, set nbx and stop looping
+                            nbx = i - start;
+                            bool = false;
                         }
                     }
-                }
-                return isWin;
-            }
 
-            function isFull(tab, x) {
-                let isFull = true;
-                if (tab[x][0] === 0) {
-                    isFull = false
-                }
-                return isFull;
-            }
+                    bool = true;
 
-            function isSolvable(tab, nbColors, nbFlasks) {
-                let isSolvable = true;
-                if (nbColors >= nbFlasks) { // Add count colors
-                    isSolvable = false;
-                }
-                return isSolvable;
-            }
-
-            function translate(tab, nbFlasks, x, X) {
-                let tmp = 0;
-                let nbx = 0; // Number of color to move from x
-                let start; // index of first color encountered
-                let colorx; // color of x
-                let nbX = 0;
-                let colorX = 0;
-                let result;// return value
-                let bool = true;// do i loop the first loop ?
-
-                if (x >= nbFlasks || X >= nbFlasks) {
-                    return false;
-                }
-
-                for (let i = 0; i < 4 && bool === true; i++) {
-                    if (i === 0) {  // first iteration
-                        if (tab[x][0] != 0) { // If not 0, set tmp and start
-                            tmp = tab[x][0];
-                            start = 0;
+                    for (let i = 0; i < 4 && bool; i++) {   // looping through to find not 0
+                        if (tab[X][i] === 0) {
+                            nbX = i + 1;
+                        }
+                        else {
+                            colorX = tab[X][i];
+                            bool = false
                         }
                     }
-                    if (tmp === 0 && tab[x][i] != tmp) {  // If First color encountered after a 0
-                        tmp = tab[x][i]               // set tmp and start
-                        colorx = tmp;
-                        start = i;
-                    }
-                    else if (tab[x][i] != tmp || i === 3) {        // If second color encountered or end of loop, set nbx and stop looping
-                        nbx = i - start;
-                        bool = false;
-                    }
-                }
 
-                bool = true;
-
-                for (let i = 0; i < 4 && bool; i++) {   // looping through to find not 0
-                    if (tab[X][i] === 0) {
-                        nbX = i + 1;
+                    console.log("nbx", nbx, "nbX", nbX, "colorx", colorx, "colorX", colorX)
+                    if (nbx > nbX || (colorx != colorX && colorX != 0)) {    // If more color than free space, don't execute and set return value to false
+                        result = false;                                   // if colors not same we also return false
                     }
-                    else {
-                        colorX = tab[X][i];
-                        bool = false
+                    else {           // Else, set return value to true and make the translation
+                        result = true;
+                        for (let i = 0; i < nbX; i++) {
+                            tab[X][nbX - 1 - i] = tab[x][start + i];
+                            tab[x][start + i] = 0;
+                        }
                     }
-                }
+                    return result;
+                } 
 
+                console.log("nbx", nbx, "nbX", nbX, "colorx", colorx, "colorX", colorX)
                 if (nbx > nbX || (colorx != colorX && colorX != 0)) {    // If more color than free space, don't execute and set return value to false
                     result = false;                                   // if colors not same we also return false
                 }
@@ -107,6 +118,11 @@
                         tab[X][nbX - 1 - i] = tab[x][start + i];
                         tab[x][start + i] = 0;
                     }
+                    data.flasks =<%= JSON.stringify(map.flasks) %>;
+                    data.nbColors =<%= JSON.stringify(map.nbColors) %>;
+                    data.nbFlasks =<%= JSON.stringify(map.nbFlasks) %>;
+                    console.log(data);
+                    return data;
                 }
                 return result;
             } 
@@ -121,6 +137,7 @@
                 data.flasks =<%= JSON.stringify(map.flasks) %>;
                 data.nbColors =<%= JSON.stringify(map.nbColors) %>;
                 data.nbFlasks =<%= JSON.stringify(map.nbFlasks) %>;
+                console.log(data);
                 return data;
             }
             

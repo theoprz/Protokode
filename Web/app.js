@@ -9,6 +9,7 @@ const test = require('./routes/test');
 const game = require('./routes/game');
 const contact = require('./routes/contact');
 const aboutus = require('./routes/aboutus');
+const signup = require('./routes/signup');
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/test', test);
 app.use('/contact', contact);
 app.use('/aboutus', aboutus);
 app.use('/index', routes);
+app.use('/signup', signup);
 
 app.use(function (req, res, next) {
     let err = new Error('Introuvable');

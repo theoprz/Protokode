@@ -11,15 +11,77 @@
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
     <!-- CSS perso -->
     <link rel="stylesheet" href="css/style.css">
+    <!--Js-contact-->
+    <script type="text/javascript" src="js/contact.js"></script>
 </head>
 <body>
-<header>
     <%- include('templates/header.ejs'); %>
-</header>
-<main>
-    <p>contact</p>
-</main>
-    <%- include('templates/footer.ejs'); %>
+
+<body>
+    <main>
+        <h1>Formulaire de contact</h1> <!--
+        <form action="/signup" onsubmit="return validateForm()" method="post" id="signup">
+            <table class="form-style">
+                <tr>
+                <td>
+                    <label>
+                        Votre nom <span class="required">*</span>
+                    </label>
+                </td>
+                <td>
+                    <input type="text" name="name" class="long"/>
+                    <span class="error" id="errorname"></span>
+                </td>
+                </tr>
+                <tr>
+                <td>
+                    <label>
+                        Votre adresse e-mail <span class="required">*</span>
+                    </label>
+                </td>
+                <td>
+                    <input type="email" name="email" class="long"/>
+                    <span class="error" id="erroremail"></span>
+                </td>
+                </tr>
+                <tr>
+                <td>
+                    <label>
+                        Message <span class="required">*</span>
+                    </label>
+                </td>
+                <td>
+                    <textarea name="message" class="long field-textarea"></textarea>
+                    <span class="error" id="errormsg"></span>
+                </td>
+                </tr>
+                <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Envoyer">      
+                    <input type="reset" value="Réinitialiser"> 
+                </td>
+                </tr>
+            </table>
+        </form>
+        -->
+        <!--
+        <form action="/signup" method="post" id="signup">
+            <h1>Sign Up</h1>
+            <small></small>
+            <input type="text" placeholder="Full Name">
+            <small></small>
+            <input type="text" placeholder="Email Address">
+            <input type="submit" value="Subscribe">
+        </form>
+        -->
+        <form method="post" action="/signup">
+            p1=<input type="text" name="p1">
+            <input type="submit" value="post">
+        </form>
+    </main>
+
+<%- include('templates/footer.ejs'); %>
 <p class="copyright"> &copy; PROJECT realise by Théo P, Théo D, Eliot, Djallal, Corentin and Quentin.</p>
 </body>
 </html>
