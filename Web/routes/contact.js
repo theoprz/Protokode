@@ -6,9 +6,9 @@ router.get('/', function(req, res, next) {
         title: 'Contact',
         action: "/signup", //post action for the form
         fields: [
-            {name:'email',type:'text',property:'required'},   //first field for the form
-            {name:'name',type:'text',property:'required'},   //another field for the form
-            {name:'message',type:'text',property:'required'}   //another field for the form
+            {name:'Name',type:'text',property:'required'},   //first field for the form
+            {name:'Email',type:'email',property:'required'},   //another field for the form
+            {name:'message',property:'required'}   //another field for the form
             ],
         name: 'Test'
     });

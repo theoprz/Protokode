@@ -25,7 +25,6 @@ header {
 }
 
 .header {
-  
   background: linear-gradient(135deg, #873b8a 15%,#56a5e2 100%);
 }
 
@@ -157,15 +156,14 @@ header {
 	margin: 0;
 	padding: .5em 1.5em;
 	font-size: inherit;
-	color: black;
+	color: white;
 	text-decoration: none;
   box-sizing: border-box;
   padding-bottom: 5px;
 }
 
 .container-page a:hover {
-  color: white;
-
+  color: black;
 }
 .header-container {
     margin-left: 5vw;
@@ -174,18 +172,19 @@ header {
 
 
 
+                                                            /*index*/
 
-                                                            /*main*/
-h1 {
+
+.index-h1 {
     font-size: 3rem;
     line-height: 1.5em;
     text-align: center;
+    color: #9c008f;
+    text-shadow: 1px 1px 0px #ff0cca;
     padding-top: 50px;
     padding-bottom: 30px;
-}
-
-                                                            /*index*/
-
+} 
+                                                            
 .quotes {
     width: 95vw;
     min-height: 400px;
@@ -332,78 +331,161 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 }
 
                                                             /*CONTACT*/
-h1{
+.titre {
+  font-size: 3rem;
+  line-height: 1.5em;
   text-align: center;
+  color: #9c008f;
+  text-shadow: 1px 1px 0px #ff0cca;
+  margin-top: 50px;
 }
-
-.form-style {
+/*
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
   margin:10px auto;
-  width: 400px;
-  padding: 20px 12px 10px 20px;
+  width: 60vw;
+  height: auto;
   font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
-.form-style td {
+
+.form-input {
+  display: flex;
+  margin: 20px 0;
+}
+
+.form-input[name=name] {
+  text-align: center;
+  width: 40vw;
+}
+
+.form-input[name=email] {
+  text-align: center;
+  width: 40vw;
+}
+
+.form-input[name=message] {
+  justify-content: center;
+  width: 50vw;
+  margin-bottom: 30px;
+}
+
+.form-label {
+  font-size: 1.4rem;
+}
+.form {
   padding: 0;
   display: block;
   list-style: none;
   margin: 10px 0 0 0;
+*/
+.form {
+  text-align: center;
+  margin:10px auto;
+  width: 40vw;
+  height: auto;
+  font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
-.form-style label{
+
+
+.form-label{
   margin:0 0 3px 0;
-  padding:0px;
+  padding:10px;
   display:block;
   font-weight: bold;
+  font-size: 1.2rem;
 }
-.form-style .required{
+
+.form-input {
+  width: 100%;
+  padding: 5px 0;
+}
+
+.form .required{
   color:red;
 }
-.form-style input[type=submit], .form-style input[type=reset]{
+
+button {
   background: #4eb5f1;
   padding: 8px 15px 8px 15px;
   border: none;
   color: #fff;
+  margin: 10px 0;
+  margin-bottom: 50px;
 }
-.form-style input[type=submit]:hover, .form-style input[type=reset]:hover{
-  background: #4eb5f1;
-  box-shadow:none;
-}
-.form-style .field-textarea{
-  height: 100px;
-}
-.form-style input[type=text], 
-.form-style input[type=email],
-textarea{
-  box-sizing: border-box;
 
+button:hover {
+  background: #4eb5f1;
+  box-shadow: 8px 8px 8px #222222;
+}
+
+.form .form-input {
+  width: 30vw;
+}
+
+.form-input[name=name], 
+.form-input[name=email],
+.form-input[name=message] {
+  box-sizing: border-box;
   border:1px solid #BEBEBE;
-  padding: 7px;
+
   margin:0px;
   outline: none;  
 }
-.form-style .long{
+
+.form textarea {
   width: 100%;
+  height: 100%;
 }
-.form-style input[type=text]:focus, 
-.form-style input[type=email]:focus,
-.form-style textarea:focus{
-  box-shadow: 0 0 8px #88D5E9;
-  border: 1px solid #88D5E9;
+
+.form-input:focus,
+textarea:focus {
+  box-shadow: 8px 8px 8px #222222;
 }
-.error{
+
+
+
+.error {
   color: #D8000C;
   background-color: #FFBABA;
-}
+} 
+/*
  
+form {
+   margin: 10%; 
+  width: 400px;
+   margin: 10% 40%; 
+}
+
+.container {
+  margin: 10% 30%;
+}
+
+textarea {
+  height: 300px;
+}
+*/
+
+.sign-title {
+  font-size: 3rem;
+  text-align: center;
+  line-height: 4;
+}
 
                                                             /*FOOTER*/   
 footer {
   margin-top: 0px;
   padding-bottom: 10px;
   background: linear-gradient(135deg, #873b8a 15%,#56a5e2 100%);	
-  color: black;
+  color: white;
   box-shadow: 0px -10px 20px rgba(0,0,0,0.4);
 }
 
+.footer-container h2 {
+  font-size: 1.8rem;
+}
 
 .footer-container {
   display: flex;
@@ -491,7 +573,7 @@ footer {
 }
 
 .footer-navigation a:hover {
-	color:  white;
+	color:  black;
 }
 
 .footer-navigation li {
@@ -519,7 +601,7 @@ footer {
   bottom: 0;
   width: 0;
   height: 3px;
-  background:white;
+  background:black;
   transition: width 500ms ease;
 }
  
