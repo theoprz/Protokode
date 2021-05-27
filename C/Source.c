@@ -3,9 +3,13 @@
 
 int main() {
 
-	int colonne = 0;
+	
+	/*int colonne = 0;
 	int colempty = 0;
-	pile* pile;
+	pile* pilejeux;
+	newpile(&pilejeux, 4);
+	int val = 0;
+	int tab[10][10] = { 0 };
 
 
 	do {
@@ -27,17 +31,27 @@ int main() {
 	printf("Il y aura %d fioles vides \n", colempty);
 	
 	
-	perfpile(colonne, colempty);
+	perfpile(pilejeux, colonne, colempty);
 	emptypile(colempty);
 
+	for (int k = 0; k < 4; k++) {
+		for (int p = 0; p < 4; p++) {
+			pull(pilejeux, &val);
+			tab[k][p] = val;
+			printf("%d ", tab[k][p]);
+		}
+	}
 
+	pilechange(colonne, colempty);*/
 
-	/*srand(time(NULL));
+	srand(time(NULL));
 
 	int tmp = 0;
 	int tab[10][10];
 	int ligne = 4;
 	int colonne;
+	int nbColoredCol;
+	int colempty;
 	int i = 0;
 	int j = 0;
 	bool solvable = true;
@@ -46,26 +60,32 @@ int main() {
 		printf(" Entrez le nombre de colonne (max 10): ");
 		scanf_s("%d", &colonne);
 
-	} while (colonne < 4);
+	} while (colonne < 2);
 	
-		if (colonne > 4)
-			printf("Il y a 2 flacons vides\n");
-		else
-			printf("Il y a 1 flacon vide\n");
+	if (colonne < 7 && colonne >= 5) {
+		colempty = 2;
+	}
+	else if (colonne >= 7) {
+		colempty = 3;
+	}
+	else {
+		colempty = 1;
+	}
 
-		printf(" Le nombre de liquides est : %d\n", ligne);
-		printf(" Le nombre de flacons est : %d\n", colonne);
+	printf("Il y aura %d fioles vides \n", colempty);
 
 		printf(" Le tableau 2D = \n");
 
-		randomtab(tab, ligne, colonne);
+		nbColoredCol = colonne - colempty;
+
+		perftab(tab, nbColoredCol);
+		initEmptyCol(tab, nbColoredCol, colonne);
 		affichtab(tab, ligne, colonne);
 
-		solvable = isSolvable(tab, ligne, colonne);
+		/*solvable = isSolvable(tab, ligne, colonne);
 
 		while (solvable == false) {
 			printf("Solution impossible, nouveau tableau : \n");
-			randomtab(tab, ligne, colonne);
 			affichtab(tab, ligne, colonne);
 		}		
 
@@ -86,8 +106,8 @@ int main() {
 			affichtab(tab, ligne, colonne);
 		}
 	}
-	printf("C'est gagne !");*/
-
+	printf("C'est gagne !");
+	*/
 }
 
 int swap(int tab[10][10]) {
@@ -123,6 +143,25 @@ int affichtab(int tab[10][10], int sizex, int sizey) {
 		printf("\n");
 	}
 
+	return 0;
+}
+
+int perftab(int tab[10][10], int nbPilecolored) {
+
+	for (int i = 0; i < nbPilecolored; i++) {
+		for (int j = 0; j < 4; j++) {
+			tab[j][i] = i + 1;
+		}
+	}
+	return 0;
+}
+
+int initEmptyCol(int tab[10][10], int nbPileColored, int sizex) {
+	for (int i = nbPileColored; i < sizex ; i++) {
+		for (int j = 0; j < 4; j++) {
+			tab[j][i] = 0;
+		}
+	}
 	return 0;
 }
 
@@ -226,7 +265,7 @@ bool isFull(int tab[10][10], int pos) {
 	}
 }
 
-int emptypile(int emptycol) {
+/*int emptypile(int emptycol) {
 
 	pile* pilevide;
 
@@ -238,23 +277,35 @@ int emptypile(int emptycol) {
 	return 0;
 }
 
-int perfpile(int nbPiles, int nbPileVides) {
+int perfpile(pile* pileperf, int nbPiles, int nbPileVides) {
+	int tab[10][10] = { 0 };
+	int temp = 0;
 	int val = 0;
-	pile* pile;
 	int coloredstack = nbPiles - nbPileVides;
+	pile* bite[10];
+
 	
 	for (int i = 0; i < coloredstack; i++) {
-		newpile(&pile, 4);
+		newpile(&pileperf, 4);
 		val++;
 		for (int j = 0; j < 4; j++) {
-			push(pile, val);
+			push(pileperf, val);
 		}
-		afficherpile(pile);	
+		afficherpile(pileperf);		
+
 	}
 	return 0;
-}
+}*/
 
-void newpile(pile** s, int initialpileSize) {
+/*int pilechange(int nbPiles, int nbPilesVides) {
+
+	perfpile(nbPiles, nbPilesVides);
+
+
+	return 0;
+}*/
+
+/*void newpile(pile** s, int initialpileSize) {
 	*s = (pile*)malloc(sizeof(pile));
 	if (*s != NULL) {
 		(*s)->tab = (int*)malloc(initialpileSize * sizeof(int));
@@ -323,5 +374,5 @@ int afficherpile(pile* pile) {
 	printf("\n");
 
 	return EXIT_SUCCESS;
-}
+}*/
 
