@@ -14,7 +14,7 @@ int main() {
 
 	do {
 		printf(" Entrez le nombre de colonne (max 10): ");
-		scanf_s("%d", &colonne);
+		scanf("%d", &colonne);
 
 	} while (colonne < 2);
 
@@ -58,7 +58,7 @@ int main() {
 
 	do {
 		printf(" Entrez le nombre de colonne (max 10): ");
-		scanf_s("%d", &colonne);
+		scanf("%d", &colonne);
 
 	} while (colonne < 2);
 	
@@ -80,11 +80,18 @@ int main() {
 
 		perftab(tab, nbColoredCol);
 		initEmptyCol(tab, nbColoredCol, colonne);
+		swap(tab, 0, 0, 0, 2);
+		swap(tab, 1, 0, 1, 2);
+
 		affichtab(tab, ligne, colonne);
 
 		printf("Nouveau tableau melange : \n");
 
-		melangtab(tab, nbColoredCol, colonne);
+		// melangtab(tab, nbColoredCol, colonne);
+
+		translateCheat(tab, colonne,1,3,1);
+
+		
 
 		/*solvable = isSolvable(tab, ligne, colonne);
 
@@ -124,6 +131,163 @@ int swap(int tab[10][10], int premierx, int premiery, int secondx, int secondy) 
 
 
 	return 0;
+}
+
+bool translate(int tab[10][10], int nbFlasks, int x, int X){
+	int tmp=0;
+	int nbx=0;
+	int start;
+	int colorx;
+	int nbX=0;
+	int colorX=0;
+	int result;
+	bool bit=true;
+	
+	if(x>= nbFlasks || X>= nbFlasks){
+		return false;
+	}
+
+	for(int i=0; i<4 && bit ;i++){
+		if(i==0){
+			if(tab[i][x]!=0){
+				tmp=tab[i][x];
+				colorx=tmp;
+				start=0;
+			}
+		}
+		if(tmp==0 && tab[i][x]!=tmp){
+			tmp=tab[i][x];
+			colorx=tmp;
+			start=i;
+		}
+		else if(tab[i][x]!=tmp){
+			nbx=i-start;
+			bit=false;
+		}
+		else if(i==3){
+			nbx=i-start+1;
+		}
+		printf("tab[i][x]=%d, tmp=%d, start=%d, colorx=%d, nbx=%d\n", tab[i][x], tmp, start, colorx, nbx);
+	}
+
+	bit=true;
+
+	for(int i=0; i<4 && bit;i++){
+		if(tab[i][X]==0){
+			nbX=i+1;
+		}
+		else{
+			colorX=tab[i][X];
+			bit=false;
+		}
+	}
+
+	printf("nbx=%d, nbX=%d,colorx=%d, colorX=%d\n",nbx, nbX, colorx, colorX);
+
+	if(nbx>nbX || (colorx!= colorX && colorX!=0)){
+		result=false;
+	}
+
+	else{
+		result=true;
+		for(int i=0;i<nbx;i++){
+			tab[(nbX-1)-(nbx - 1 - i)][X] = tab[start + i][x];
+			tab[start + i][x] = 0;
+		}
+	}
+
+	affichtab(tab,4,5);
+
+	return result;
+}
+
+bool translateCheat(int tab[10][10], int nbFlasks, int x, int X, int nbMove)
+{
+	int tmp = 0;
+	int nbx = 0;
+	int start;
+	int colorx;
+	int nbX = 0;
+	int colorX = 0;
+	int result;
+	bool bit = true;
+
+	if (x >= nbFlasks || X >= nbFlasks)
+	{
+		return false;
+	}
+
+	for (int i = 0; i < 4 && bit; i++)
+	{
+		if (i == 0)
+		{
+			if (tab[i][x] != 0)
+			{
+				tmp = tab[i][x];
+				colorx = tmp;
+				start = 0;
+			}
+		}
+		if (tmp == 0 && tab[i][x] != tmp)
+		{
+			tmp = tab[i][x];
+			colorx = tmp;
+			start = i;
+		}
+		else if (tab[i][x] != tmp)
+		{
+			nbx = i - start;
+			bit = false;
+		}
+		else if (i == 3)
+		{
+			nbx = i - start + 1;
+		}
+		printf("tab[i][x]=%d, tmp=%d, start=%d, colorx=%d, nbx=%d\n", tab[i][x], tmp, start, colorx, nbx);
+	}
+
+	
+
+	bit = true;
+
+	for (int i = 0; i < 4 && bit; i++)
+	{
+		if (tab[i][X] == 0)
+		{
+			nbX = i + 1;
+		}
+		else
+		{
+			colorX = tab[i][X];
+			bit = false;
+		}
+	}
+
+	if (nbMove > nbX || nbMove >=nbx)
+	{
+		return false;
+	}
+
+	printf("nbx=%d, nbX=%d,colorx=%d, colorX=%d\n", nbx, nbX, colorx, colorX);
+
+	if (nbMove > nbX)
+	{
+		result = false;
+	}
+
+	else
+	{
+		result = true;
+		for (int i = 0; i < nbMove; i++)
+		{
+			tab[(nbx - 1 - i)][X] = tab[start + i][x];
+			tab[start + i][x] = 0;
+		}
+	}
+
+	affichtab(tab, 4, 5);
+
+	return result;
 }
 
 int melangtab(int tab[10][10], int nbcoloredcoll, int colonne ) {
@@ -333,7 +497,7 @@ int push(pile* s, int valeur) { // On ajoute une valeur
 	}
 }
 
-int pull(pile* s, int* valeur) { // On retir la dernière valeur de la pile
+int pull(pile* s, int* valeur) { // On retir la derniï¿½re valeur de la pile
 	if (!ispileEmpty(s)) {
 		*valeur = s->tab[s->nbElements - 1];
 		s->nbElements--;
@@ -342,7 +506,7 @@ int pull(pile* s, int* valeur) { // On retir la dernière valeur de la pile
 	return EXIT_FAILURE;
 }
 
-int peek(pile* s, int* valeur) {  // On récupére la dernière valeur de la pile
+int peek(pile* s, int* valeur) {  // On rï¿½cupï¿½re la derniï¿½re valeur de la pile
 	if (!ispileEmpty(s)) {
 		*valeur = s->tab[s->nbElements - 1];
 		return EXIT_SUCCESS;
