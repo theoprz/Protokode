@@ -82,6 +82,10 @@ int main() {
 		initEmptyCol(tab, nbColoredCol, colonne);
 		affichtab(tab, ligne, colonne);
 
+		printf("Nouveau tableau melange : \n");
+
+		melangtab(tab, nbColoredCol, colonne);
+
 		/*solvable = isSolvable(tab, ligne, colonne);
 
 		while (solvable == false) {
@@ -110,27 +114,36 @@ int main() {
 	*/
 }
 
-int swap(int tab[10][10]) {
+int swap(int tab[10][10], int premierx, int premiery, int secondx, int secondy) {
 
 	int tmp = 0;
-	int premierx, premiery;
-	int secondx, secondy;
-
-	printf("Choisissez un x  \n");
-	scanf_s("%d", &premierx);	
-	printf("Choisissez un y \n");
-	scanf_s("%d", &premiery);
-
-	printf("Choisissez un x a remplacer \n");
-	scanf_s("%d", &secondx);
-	printf("Choisissez un y a remplacer \n");
-	scanf_s("%d", &secondy);
-
 	
 	tmp = tab[premierx][premiery];
 	tab[premierx][premiery] = tab[secondx][secondy];
 	tab[secondx][secondy] = tmp;
 
+
+	return 0;
+}
+
+int melangtab(int tab[10][10], int nbcoloredcoll, int colonne ) {
+	int sizex = 4;
+	int nbr = 0;
+	int x1 = 0, x2 = 0, y1 = 0, y2 = 0;
+
+	while (nbr < (nbcoloredcoll * sizex)) {
+
+		x1 = rand() % 4;
+		x2 = rand () % 4;
+		y1 = rand () % nbcoloredcoll;
+		y2 = rand () % nbcoloredcoll;
+
+		swap(tab, x1, y1, x2, y2);
+		
+		nbr++;
+	}
+
+	affichtab(tab, nbcoloredcoll, colonne);
 
 	return 0;
 }
@@ -194,25 +207,6 @@ bool isWin(int tab[10][10], int sizex, int sizey) {
 		}
 	}
 	return success;
-}
-
-int random_number(int min_num, int max_num)
-{
-	int result = 0, low_num = 0, hi_num = 0;
-
-	if (min_num < max_num)
-	{
-		low_num = min_num;
-		hi_num = max_num + 1;
-	}
-	else {
-		low_num = max_num + 1;
-		hi_num = min_num;
-	}
-
-	srand(time(NULL));
-	result = (rand() % (hi_num - low_num)) + low_num;
-	return result;
 }
 
 bool isSolvable(int tab[10][10], int sizex, int sizey) {
