@@ -1,6 +1,6 @@
 alert("Ce jeu est encore en cours de développement")
 
-let game = new Phaser.Game(1600, 600, Phaser.CANVAS, 'content', { preload: preload, create: create, update: update });
+let game = new Phaser.Game(1550, 600, Phaser.CANVAS, 'content', { preload: preload, create: create, update: update });
 
 function preload() {
 

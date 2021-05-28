@@ -11,7 +11,7 @@
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
     <!--Js-phaser-->
-    <script type="text/javascript" src="js/phaser.min.js"></script>
+    <script type="text/javascript" src="js/phaser.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <!-- CSS perso -->
     <link rel="stylesheet" href="css/style.css">
@@ -109,10 +109,10 @@
 		        }
             }
             return result;
-        } 
+        }
 
         function importJson(){
-            let data = 
+            let data =
             {
                 "nbColors":0,
                 "nbFlasks":0,
@@ -123,13 +123,13 @@
             data.nbFlasks =<%= JSON.stringify(map.nbFlasks) %>;
             return data;
         }
-        
+
 
         let data=importJson();
-        
+
     </script>
     </div>
-    
+
 </main>
 <footer>
     <%- include('templates/footer.ejs'); %>
