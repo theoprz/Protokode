@@ -999,6 +999,7 @@ footer {
 
 .game {
 
+<<<<<<< Updated upstream
     border: 4mm ridge #ac16b1;
     margin: 50px auto;
     width: 1610px;
@@ -1009,4 +1010,16 @@ canvas {
   margin: 0 auto;
   width: 1000px;
   height: 1000px;
+=======
+  border: 3mm ridge #ac16b1;
+  margin: 50px auto;
+  width: 1650px;
+  height: 650px; 
+}
+
+canvas {
+margin: 0 auto;
+width: 1600px; 
+height: 600px; 
+>>>>>>> Stashed changes
 }
