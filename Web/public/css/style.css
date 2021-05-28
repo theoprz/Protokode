@@ -261,14 +261,12 @@ header {
 
 /*about US*/
 .about {
-  width: 95vw;
   min-height: 400px;
   display: flex;
   justify-content: space-around;
   z-index: 2;
   margin-top:150px;
-  margin-bottom: 150px;
-  margin-left: 40px;
+  margin-bottom: 80px;
 }
 
 .about .box {
@@ -322,13 +320,152 @@ header {
 .about .box.box1:hover~.bg {
 opacity: 1;
 background: #e2a9e5;
-background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+/*background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);*/
+background:linear-gradient(135deg, #e2a9e5 15%,#2b94e5 100%);
 }
 
 .about .box a {
   text-decoration: none;
   color: #000000;
 }
+/*Linkedln*/
+
+.linkedln-container {
+  font-family: "Raleway", sans-serif;
+  background-image: radial-gradient(circle at center, #899Dc4, #495D84);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at bottom, #1b2735, #090a0f);
+  font-weight: 300;
+}
+
+.all {
+  display: flex;
+  perspective: 10px;
+  transform: perspective(300px) rotateX(20deg);
+  will-change: perspective;
+  perspective-origin: center center;
+  transition: all 1.3s ease-out;
+  justify-content: center;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.all:hover {
+  perspective: 1000px;
+  transition: all 1.3s ease-in;
+  transform: perspective(10000px) rotateX(0deg);
+}
+.all:hover .text {
+  opacity: 1;
+}
+.all:hover > div {
+  opacity: 1;
+  transition-delay: 0s;
+}
+.all:hover .explainer {
+  opacity: 0;
+}
+
+.left, .center, .right, .lefter, .righter {
+  width: 200px;
+  height: 150px;
+  transform-style: preserve-3d;
+  border-radius: 10px;
+  border: 1px solid #fff;
+  box-shadow: 0 0 20px 5px rgba(100, 100, 255, 0.4);
+  opacity: 0;
+  transition: all 0.3s ease;
+  transition-delay: 1s;
+  position: relative;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #58d;
+  cursor: pointer;
+  background-blend-mode: color-burn;
+}
+.left:hover, .center:hover, .right:hover, .lefter:hover, .righter:hover {
+  box-shadow: 0 0 30px 10px rgba(100, 100, 255, 0.6);
+  background-color: #ccf;
+}
+
+.text {
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  bottom: 0;
+  left: 5px;
+  position: absolute;
+  will-change: transform;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(100, 100, 255, 0.6);
+}
+
+.lefter {
+  transform: translateX(-60px) translateZ(-50px) rotateY(-10deg);
+  background-image: url(https://cdn3.iconfinder.com/data/icons/other-icons/48/organization-512.png);
+}
+
+.left {
+  transform: translateX(-30px) translateZ(-25px) rotateY(-5deg);
+  background-image: url(https://cdn3.iconfinder.com/data/icons/other-icons/48/creative_draw-512.png);
+}
+
+.center {
+  opacity: 1;
+  background-image: url(https://cdn3.iconfinder.com/data/icons/other-icons/48/app_window-512.png);
+}
+
+.right {
+  transform: translateX(30px) translateZ(-25px) rotateY(5deg);
+  background-image: url(https://cdn3.iconfinder.com/data/icons/other-icons/48/cloud_weather-512.png);
+}
+
+.righter {
+  transform: translateX(60px) translateZ(-50px) rotateY(10deg);
+  background-image: url(https://cdn3.iconfinder.com/data/icons/other-icons/48/search-512.png);
+}
+
+.explainer {
+  font-weight: 300;
+  font-size: 2rem;
+  color: #fff;
+  transition: all 0.6s ease;
+  width: 100%;
+  height: 100%;
+  background-color: #303050;
+  background-image: radial-gradient(circle at center top, #cce, #33a);
+  border-radius: 10px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ref {
+  background-color: #000;
+  background-image: linear-gradient(to bottom, #d80, #c00);
+  border-radius: 3px;
+  padding: 7px 10px;
+  position: absolute;
+  font-size: 16px;
+  bottom: 10px;
+  right: 10px;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+}
+.ref::first-letter {
+  font-size: 12px;
+}
+
+
 
                                                             /*CONTACT*/
 .titre {
@@ -339,48 +476,7 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   text-shadow: 1px 1px 0px #ff0cca;
   margin-top: 50px;
 }
-/*
-.form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  margin:10px auto;
-  width: 60vw;
-  height: auto;
-  font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
 
-.form-input {
-  display: flex;
-  margin: 20px 0;
-}
-
-.form-input[name=name] {
-  text-align: center;
-  width: 40vw;
-}
-
-.form-input[name=email] {
-  text-align: center;
-  width: 40vw;
-}
-
-.form-input[name=message] {
-  justify-content: center;
-  width: 50vw;
-  margin-bottom: 30px;
-}
-
-.form-label {
-  font-size: 1.4rem;
-}
-.form {
-  padding: 0;
-  display: block;
-  list-style: none;
-  margin: 10px 0 0 0;
-*/
 .form {
   text-align: center;
   margin:10px auto;
@@ -388,7 +484,6 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   height: auto;
   font: 14px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
-
 
 .form-label{
   margin:0 0 3px 0;
@@ -399,8 +494,9 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 }
 
 .form-input {
-  width: 100%;
-  padding: 5px 0;
+  padding: 5px 15px;
+  width: 400px;
+  overflow: scroll;
 }
 
 .form .required{
@@ -408,36 +504,32 @@ background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 }
 
 button {
-  background: #4eb5f1;
+  background: #000000;
   padding: 8px 15px 8px 15px;
   border: none;
   color: #fff;
   margin: 10px 0;
   margin-bottom: 50px;
+  font-size: 1.4rem;
 }
 
 button:hover {
-  background: #4eb5f1;
+  background: #ffffff;
+  color: #000000;
   box-shadow: 8px 8px 8px #222222;
 }
 
-.form .form-input {
-  width: 30vw;
-}
 
-.form-input[name=name], 
-.form-input[name=email],
-.form-input[name=message] {
+.form-input, textarea {
   box-sizing: border-box;
-  border:1px solid #BEBEBE;
-
+  border:2px solid #BEBEBE;
   margin:0px;
   outline: none;  
 }
 
-.form textarea {
+textarea {
   width: 100%;
-  height: 100%;
+  height: 150px;
 }
 
 .form-input:focus,
@@ -445,29 +537,7 @@ textarea:focus {
   box-shadow: 8px 8px 8px #222222;
 }
 
-
-
-.error {
-  color: #D8000C;
-  background-color: #FFBABA;
-} 
-/*
- 
-form {
-   margin: 10%; 
-  width: 400px;
-   margin: 10% 40%; 
-}
-
-.container {
-  margin: 10% 30%;
-}
-
-textarea {
-  height: 300px;
-}
-*/
-
+                                                            /*SIGN UP*/
 .sign-title {
   font-size: 3rem;
   text-align: center;
@@ -567,23 +637,29 @@ footer {
   background: orange;
 }
 
+/*Footer Navigation*/ 
+
 .footer-navigation{
   display : flex;
   flex-direction: column;
+  text-align: center;
 }
 
+
+
 .footer-navigation a:hover {
-	color:  black;
+	color:  white;
 }
 
 .footer-navigation li {
   list-style: none;
 }
 
+.footer-navigation ul {
+  padding-left: 0px;
+}
 
-
-
-/* Underline From Center */
+/* souligné de gauche à droite */
 .footer-navigation a {
   position: relative;
   text-decoration: none;
@@ -591,7 +667,8 @@ footer {
   margin-top: 10px;
   font-size: 1.5rem;
   line-height: 1.5;
-  text-align: center;
+
+  
 }
  
 .footer-navigation a:after {
@@ -601,16 +678,14 @@ footer {
   bottom: 0;
   width: 0;
   height: 3px;
-  background:black;
+  background:white;
   transition: width 500ms ease;
 }
  
 .footer-navigation a:hover:after {
   width: 100%;
 }
-.navigation {
-    padding-left: 0;
-}
+
 
 /*image footer*/   
 .container-image {
@@ -902,9 +977,19 @@ footer {
 #gameCanvas {
     margin: auto;
     display: table;
+    align-items: center;
 }
 
 .game {
-    text-align: center;
-    /*margin: 10px 20vw;*/
+
+    border: 4mm ridge #ac16b1;
+    margin: 50px auto;
+    width: 1050px;
+    height: 1050px; 
+}
+
+canvas {
+  margin: 0 auto;
+  width: 1000px; 
+  height: 1000px; 
 }

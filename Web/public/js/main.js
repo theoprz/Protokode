@@ -5,9 +5,7 @@ let config = {
     height: 1000,
     backgroundColor: '#56a5e2',
     parent: 'content',
-    /*dom: {
-        createContainer: true
-    },*/
+
     scene: {
         preload: preload,
         create: create
