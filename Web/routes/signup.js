@@ -12,12 +12,25 @@ app.post('/', function(req, res, next) {
         name: 'Test'
     });
 
-    console.log(req.body.email);
-    console.log(req.body.name);
-    console.log(req.body.message);
+
+    let message ={
+        "email":req.body.Email,
+        "name":req.body.Name,
+        "message":req.body.message
+        };
 
     let data = JSON.parse(fs.readFileSync("public/data/feedback.json"));
-    console.log(data);
+
+    Object.create(data.message)
+    data.nbMessage++;
+    data.message[data.nbMessage]=message;
+
+
+    let string= JSON.stringify(data,null,"\t");
+
+    fs.writeFileSync("public/data/feedback.json",string);
+
+
 })
 
 module.exports = app;
