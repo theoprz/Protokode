@@ -1,78 +1,74 @@
+alert("Ce jeu est encore en cours de développement")
 
-let config = {
-    type: Phaser.AUTO,
-    width: 1000,
-    height: 1000,
-    backgroundColor: '#56a5e2',
-    parent: 'content',
+let game = new Phaser.Game(1600, 600, Phaser.CANVAS, 'content', { preload: preload, create: create, update: update });
 
-    scene: {
-        preload: preload,
-        create: create
-    }
-};
+function preload() {
 
+    game.load.image('fiole', 'img/button-bg.png');
+    game.load.image('fondBleu', 'img/fond-bleu.png');
+    game.load.image('fondRouge', 'img/fond-rouge.png')
 
-let game = new Phaser.Game(config);
-
-
-
-function preload ()
-{
-    this.load.image('buttonBG', 'img/button-bg.png');
-    this.load.image('fioleB', 'img/fiole-b.png');
 }
 
-function create ()
-{
-    //let glass1 = this.add.image(0, 0, 'buttonBG');
-    let glass11 = this.add.image(0, 0, 'fioleB');
-    let glass2 = this.add.image(0, 0, 'buttonBG');
-    let glass3 = this.add.image(0, 0, 'buttonBG');
-    let glass4 = this.add.image(0, 0, 'buttonBG');
+let fioleGroup;
+let child;
 
-    let container = this.add.container(150, 234, [ glass11 ]);
-    let container2 = this.add.container(383, 234, [ glass2 ]);
-    let container3 = this.add.container(621, 234, [ glass3 ]);
-    let container4 = this.add.container(855, 234, [ glass4 ]);
+function create() {
+    game.stage.backgroundColor = '#56a5e2';
 
-    container.setSize(glass11.width, glass11.height);
-    container2.setSize(glass2.width, glass2.height);
-    container3.setSize(glass3.width, glass3.height);
-    container4.setSize(glass4.width, glass4.height);
+    fioleGroup = game.add.group();
 
-    container.setInteractive();
-    container2.setInteractive();
-    container3.setInteractive();
-    container4.setInteractive();
+    for (let i = 0; i < 3; i++) {
+        fioleGroup.create(150+(i*234), 234, 'fiole');
+    }
+    fioleGroup.children[0].addChild(game.add.sprite(0,0,'fondBleu'));
+    fioleGroup.children[1].addChild(game.add.sprite(0,0,'fondBleu'));
+    fioleGroup.children[0].addChild(game.add.sprite(0,0,'fondBleu'));
+    fioleGroup.children[0].addChild(game.add.sprite(0,0,'fondBleu'));
 
-    this.input.setDraggable(container);
-    this.input.setDraggable(container2);
-    this.input.setDraggable(container3);
-    this.input.setDraggable(container4);
+    fioleGroup.children[2].addChild(game.add.sprite(0,0,'fondBleu'));
+    fioleGroup.children[2].addChild(game.add.sprite(0,0,'fondBleu'));
+    fioleGroup.children[1].addChild(game.add.sprite(0,0,'fondBleu'));
+    fioleGroup.children[0].addChild(game.add.sprite(0,0,'fondRouge'));
 
-    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+    fioleGroup.forEach(items => {
+        items.inputEnabled = true
+        items.input.enableDrag();
+        game.physics.arcade.enable(items);
+        items.events.onDragStart.add(startDrag, this);
+        items.events.onDragStop.add(stopDrag, this);
+    })
 
-        gameObject.x = dragX;
-        gameObject.y = dragY;
+}
 
+function update() {
+
+}
+
+let startPosX;
+let startPosY;
+
+function startDrag(item) {
+    item.body.moves = false;
+    startPosX = item.worldPosition.x;
+    startPosY = item.worldPosition.y;
+}
+
+function stopDrag(item, pointer) {
+    item.position.x = startPosX;
+    item.position.y = startPosY;
+    item.body.moves = true;
+
+    game.physics.arcade.overlap(item, fioleGroup.children[0], function() {
+        item.children.pop();
+        fioleGroup.children[0].addChild(game.add.sprite(0,0,'fondBleu'));
     });
-
-    let posx = 0;
-    let posy = 0;
-
-    this.input.on('dragstart', function (pointer, gameObject) {
-
-        posx = gameObject.x;
-        posy = gameObject.y;
-
+    game.physics.arcade.overlap(item, fioleGroup.children[1], function() {
+        item.children.pop();
+        fioleGroup.children[1].addChild(game.add.sprite(0,0,'fondBleu'));
     });
-
-    this.input.on('dragend', function (pointer, gameObject) {
-
-        gameObject.x = posx;
-        gameObject.y = posy;
-
+    game.physics.arcade.overlap(item, fioleGroup.children[2], function() {
+        item.children.pop();
+        fioleGroup.children[2].addChild(game.add.sprite(0,0,'fondBleu'));
     });
-
 }
