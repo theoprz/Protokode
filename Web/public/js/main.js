@@ -13,9 +13,6 @@ let config = {
 };
 
 
-alert("Ce jeu est encore en cours de développement")
-
-
 let game = new Phaser.Game(config);
 
 

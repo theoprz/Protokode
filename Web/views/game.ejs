@@ -69,6 +69,7 @@
                 if (i === 0) {  // first iteration
                     if (tab[x][0] != 0) { // If not 0, set tmp and start
                         tmp = tab[x][0];
+                        colorx=tmp;
                         start = 0;
                     }
                 }
@@ -77,10 +78,14 @@
                     colorx = tmp;
                     start = i;
                 }
-                else if (tab[x][i] != tmp || i === 3) {        // If second color encountered or end of loop, set nbx and stop looping
+                else if (tab[x][i] != tmp) {        // If second color encountered or end of loop, set nbx and stop looping
                     nbx = i - start;
                     bool = false;
                 }
+                else if(i==3){
+			        nbx=i-start+1;
+		        }
+                console.log("nbx=",nbx,",tab[x][i]=",tab[x][i],",colorx=",colorx,"start=",start)
             }
 
             bool = true;
@@ -94,16 +99,15 @@
                     bool = false
                 }
             }
-
             if (nbx > nbX || (colorx != colorX && colorX != 0)) {    // If more color than free space, don't execute and set return value to false
                 result = false;                                   // if colors not same we also return false
             }
             else {           // Else, set return value to true and make the translation
                 result = true;
-                for (let i = 0; i < nbX; i++) {
-                    tab[X][nbX - 1 - i] = tab[x][start + i];
+                for(let i=0;i<nbx;i++){
+                    tab[X][(nbX-1)-(nbx - 1 - i)] = tab[x][start + i];
                     tab[x][start + i] = 0;
-                }
+		        }
             }
             return result;
         } 
@@ -118,11 +122,12 @@
             data.flasks =<%= JSON.stringify(map.flasks) %>;
             data.nbColors =<%= JSON.stringify(map.nbColors) %>;
             data.nbFlasks =<%= JSON.stringify(map.nbFlasks) %>;
-            console.log(data);
             return data;
         }
-            
+        
 
+        let data=importJson();
+        
     </script>
     </div>
     
