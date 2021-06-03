@@ -34,7 +34,11 @@ GameOver.prototype = {
   },
 
   create: function () {
+<<<<<<< Updated upstream
     game.add.sprite(0, 0, 'gameover-bg');
+=======
+    game.add.sprite(0, 0, 'background3');
+>>>>>>> Stashed changes
     var titleStyle = { font: 'bold 60pt TheMinion', fill: '#FDFFB5', align: 'center'};
     var text = game.add.text(game.world.centerX, 100, "Game Over", titleStyle);
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);

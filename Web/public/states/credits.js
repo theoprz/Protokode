@@ -1,4 +1,9 @@
+<<<<<<< Updated upstream
 let Credits = function(game) {};
+=======
+
+var Credits = function(game) {};
+>>>>>>> Stashed changes
 
 Credits.prototype = {
 
@@ -9,10 +14,17 @@ Credits.prototype = {
   },
 
   addCredit: function(task, author) {
+<<<<<<< Updated upstream
     let authorStyle = { font: '40pt TheMinion', fill: 'white', align: 'center', stroke: 'rgba(0,0,0,0)', strokeThickness: 4};
     let taskStyle = { font: '30pt TheMinion', fill: 'white', align: 'center', stroke: 'rgba(0,0,0,0)', strokeThickness: 4};
     let authorText = game.add.text(game.world.centerX, 900, author, authorStyle);
     let taskText = game.add.text(game.world.centerX, 950, task, taskStyle);
+=======
+    var authorStyle = { font: '40pt TheMinion', fill: 'white', align: 'center', stroke: 'rgba(0,0,0,0)', strokeThickness: 4};
+    var taskStyle = { font: '30pt TheMinion', fill: 'white', align: 'center', stroke: 'rgba(0,0,0,0)', strokeThickness: 4};
+    var authorText = game.add.text(game.world.centerX, 900, author, authorStyle);
+    var taskText = game.add.text(game.world.centerX, 950, task, taskStyle);
+>>>>>>> Stashed changes
     authorText.anchor.setTo(0.5);
     authorText.stroke = "rgba(0,0,0,0)";
     authorText.strokeThickness = 4;
@@ -25,17 +37,30 @@ Credits.prototype = {
   },
 
   addMenuOption: function(text, callback) {
+<<<<<<< Updated upstream
     let optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
     let txt = game.add.text(10, (this.optionCount * 80) + 450, text, optionStyle);
 
     txt.stroke = "rgba(0,0,0,0";
     txt.strokeThickness = 4;
     let onOver = function (target) {
+=======
+    var optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
+    var txt = game.add.text(10, (this.optionCount * 80) + 450, text, optionStyle);
+
+    txt.stroke = "rgba(0,0,0,0";
+    txt.strokeThickness = 4;
+    var onOver = function (target) {
+>>>>>>> Stashed changes
       target.fill = "#FF0000";
       target.stroke = "rgba(200,200,200,0.5)";
       txt.useHandCursor = true;
     };
+<<<<<<< Updated upstream
     let onOut = function (target) {
+=======
+    var onOut = function (target) {
+>>>>>>> Stashed changes
       target.fill = "white";
       target.stroke = "rgba(0,0,0,0)";
       txt.useHandCursor = false;
@@ -51,6 +76,7 @@ Credits.prototype = {
 
   create: function () {
     this.stage.disableVisibilityChange = true;
+<<<<<<< Updated upstream
     /*if (gameOptions.playMusic) {
       musicPlayer.stop();
       musicPlayer = game.add.audio('exit');
@@ -58,6 +84,11 @@ Credits.prototype = {
     }*/
 
     let bg = game.add.sprite(0, 0, 'background3');
+=======
+      music = game.add.audio('exit');
+      music.play();
+    var bg = game.add.sprite(0, 0, 'background3');
+>>>>>>> Stashed changes
     this.addCredit('Game Developer', 'Porzio Theo');
     this.addCredit('Developer', 'Leleu ELiot');
     this.addCredit('Web Developer', 'Danel Theo');

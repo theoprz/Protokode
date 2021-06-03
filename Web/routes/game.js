@@ -5,7 +5,7 @@ const map = require('../public/data/map.json');
 router.get('/', function(req, res, next) {
     res.render('game', {
         title: 'Game',
-        name: 'Test',
+        name: 'Game',
         map: map
     });
 });
