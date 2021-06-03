@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 let Splash = function () {};
-=======
-var Splash = function () {};
->>>>>>> Stashed changes
 
 Splash.prototype = {
 
@@ -12,16 +8,8 @@ Splash.prototype = {
     game.load.script('WebFont', '../vendor/webfontloader.js');
     game.load.script('gamemenu','../states/GameMenu.js');
     game.load.script('game', '../states/Game.js');
-<<<<<<< Updated upstream
     game.load.script('gameover','../states/GameOver.js');
     game.load.script('gamescreen','../states/gamescreen.js');
-=======
-    game.load.script('niveau1', '../states/niveau1.js');
-    game.load.script('niveau2', '../states/niveau2.js');
-    game.load.script('niveau3', '../states/niveau3.js');
-    game.load.script('niveau4', '../states/niveau4.js');
-    game.load.script('gameover','../states/GameOver.js');
->>>>>>> Stashed changes
     game.load.script('credits', '../states/Credits.js');
     game.load.script('options', '../states/Options.js');
   },
@@ -69,7 +57,6 @@ Splash.prototype = {
     this.loadImages();
     this.loadFonts();
     this.loadBgm();
-<<<<<<< Updated upstream
 
   },
 
@@ -85,25 +72,6 @@ Splash.prototype = {
 
   addGameMusic: function () {
     let music = game.add.audio('dangerous');
-=======
-    
-  },
-
-  addGameStates: function () {
-    game.state.add("GameMenu",GameMenu);
-    game.state.add("Game",Game);
-    game.state.add("GameOver",GameOver);
-    game.state.add("Credits",Credits);
-    game.state.add("Options",Options);
-    game.state.add("niveau1",niveau1);
-    game.state.add("niveau2",niveau2);
-    game.state.add("niveau3",niveau3);
-    game.state.add("niveau4",niveau4);
-  },
-
-  addGameMusic: function () {
-    music = game.add.audio('dangerous');
->>>>>>> Stashed changes
     music.loop = true;
     music.play();
   },

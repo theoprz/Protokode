@@ -20,7 +20,6 @@ Options.prototype = {
     this.optionCount = 1;
   },
   create: function () {
-<<<<<<< Updated upstream
     let playSound = gameOptions.playSound,
         playMusic = gameOptions.playMusic;
 
@@ -38,20 +37,14 @@ Options.prototype = {
     });
     */
     
-=======
-    game.add.sprite(0, 0, 'background6');
->>>>>>> Stashed changes
     this.addMenuOption('<- Back', function () {
       game.state.start("GameMenu");
     });
   }
 };
 
-<<<<<<< Updated upstream
 function actionOnClick () {
   music.paused = !music.paused
 }
-=======
->>>>>>> Stashed changes
 
 Phaser.Utils.mixinPrototype(Options.prototype, mixins);

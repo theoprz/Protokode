@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 let Game = function(game) {};
-=======
-var Game = function(game) {};
->>>>>>> Stashed changes
 
 Game.prototype = {
 
@@ -12,11 +8,7 @@ Game.prototype = {
 
   addMenuOption: function(text, callback) {
     var optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
-<<<<<<< Updated upstream
     var txt = game.add.text(120, (this.optionCount * 80) + 50, text, optionStyle);
-=======
-    var txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 50, text, optionStyle);
->>>>>>> Stashed changes
     txt.anchor.setTo(0.5);
     txt.stroke = "rgba(0,0,0,0";
     txt.strokeThickness = 4;
@@ -43,7 +35,6 @@ Game.prototype = {
     this.stage.disableVisibilityChange = false;
     game.add.sprite(0, 0, 'background5');
 
-<<<<<<< Updated upstream
 
 
 
@@ -110,26 +101,3 @@ Game.prototype = {
 
   }
 };
-=======
-    
-
-    
-    this.addMenuOption('Level 1-5', function (e) {
-      this.game.state.start("niveau1");
-    });
-    this.addMenuOption('Level 6-10', function (e) {
-      this.game.state.start("niveau2");
-    });
-    this.addMenuOption('Level 11-15', function (e) {
-      this.game.state.start("niveau3");
-    });
-    this.addMenuOption('Level 16-20', function (e) {
-      this.game.state.start("niveau4");
-    });
-    this.addMenuOption('<- Back', function () {
-        game.state.start("Game");
-      });
-    
-  }
-};
->>>>>>> Stashed changes

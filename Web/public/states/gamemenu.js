@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
 let GameMenu = function() {};
-=======
-var GameMenu = function() {};
->>>>>>> Stashed changes
 
 
 GameMenu.prototype = {
@@ -24,11 +20,7 @@ GameMenu.prototype = {
   },
 
   create: function () {
-<<<<<<< Updated upstream
 
-=======
-    music.stop();
->>>>>>> Stashed changes
     game.stage.disableVisibilityChange = true;
     game.add.sprite(0, 0, 'background4');
     game.add.existing(this.titleText);
