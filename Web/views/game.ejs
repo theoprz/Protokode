@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>Test</title>
     <meta name="description" content="test">
-	<!-- Font Awesome -->
+    <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/65f54486e0.js" crossorigin="anonymous"></script>
     <!-- Google Fonts -->
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
@@ -17,36 +17,31 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <%- include('templates/header.ejs'); %>
+<%- include('templates/header.ejs'); %>
 <main>
     <div id="game" class="game">
-    <script>
-        function isSolvable(tab, nbColors, nbFlasks) {
-            let isSolvable = true;
-            if (nbColors >= nbFlasks) { // Add count colors
-                isSolvable = false;
+        <script>
+            function isSolvable(tab, nbColors, nbFlasks) {
+                let isSolvable = true;
+                if (nbColors >= nbFlasks) { // Add count colors
+                    isSolvable = false;
+                }
+                return isSolvable;
             }
-            return isSolvable;
-        }
-
-
-        function importJson(){
-            let data =
-            {
-                "nbColors":0,
-                "nbFlasks":0,
-                "flasks": []
+            function importJson(){
+                let data =
+                    {
+                        "nbColors":0,
+                        "nbFlasks":0,
+                        "flasks": []
+                    }
+                data.flasks = <%= JSON.stringify(map.flasks) %>;
+                data.nbColors = <%= JSON.stringify(map.nbColors) %>;
+                data.nbFlasks = <%= JSON.stringify(map.nbFlasks) %>;
+                return data;
             }
-            data.flasks = <%= JSON.stringify(map.flasks) %>;
-            data.nbColors = <%= JSON.stringify(map.nbColors) %>;
-            data.nbFlasks = <%= JSON.stringify(map.nbFlasks) %>;
-            return data;
-        }
-
-
-        let data=importJson();
-
-    </script>
+            let data=importJson();
+        </script>
     </div>
 
 </main>
