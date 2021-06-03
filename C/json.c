@@ -5,8 +5,8 @@ int main(void)
 {
     // Easy to fill variables
     int couleurs=5;
-    int fiole=3;
-    int tabFioles[5][4];
+    int fiole=6;
+    int tabFioles[10][10];
     for(int i=0;i<fiole;i++){
         for(int j=0;j<4;j++){
             tabFioles[i][j]=i+1;

@@ -517,6 +517,8 @@ textarea:focus {
   font-size: 3rem;
   text-align: center;
   line-height: 4;
+  margin-top: 5%;
+  margin-bottom:5%;
 }
 
                                                             /*FOOTER*/
