@@ -61,7 +61,7 @@ gamescreen.prototype = {
 
     actionOnClick: function(){
         alert("Level Restarted !");
-        game.state.restart(true, false, {level: this.level});
+        game.state.restart(true, false, {level: this.level, levelNumber: this.levelNumber});
     },
 
     startDrag: function (item) {

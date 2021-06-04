@@ -48,10 +48,10 @@ niveau1.prototype = {
       this.game.state.start("gamescreen", true, false, {level: [[1,2,3,1],[1,2,3,3],[2,3,1,2],[0,0,0,0],[0,0,0,0]], levelNumber: 3});
     });
     this.addMenuOption('Level 4', function (e) {
-      this.game.state.start("gamescreen", true, false, {level: [[1,2,1,2],[0,0,0,0],[1,2,1,2]], levelNumber: 4});
+      this.game.state.start("gamescreen", true, false, {level: [[3,3,2,1],[2,1,2,1],[3,2,1,3],[0,0,0,0],[0,0,0,0]], levelNumber: 4});
     });
     this.addMenuOption('Level 5', function (e) {
-      this.game.state.start("gamescreen", true, false, {level: [[1,2,1,2],[0,0,0,0],[1,2,1,2]], levelNumber: 5});
+      this.game.state.start("gamescreen", true, false, {level: [[1,2,1,2],[0,0,0,0],[1,2,1,2],[1,2,1,2],[0,0,0,0],[1,2,1,2],[0,0,0,0]], levelNumber: 5});
     });
     
     this.addMenuOption('<- Back', function () {

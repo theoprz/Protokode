@@ -2,209 +2,48 @@
 #define STACKOVERFLOW -1
 
 int main() {
-	srand((int)time(NULL));
-	int input;
 
-	// Var for json
-	int couleurs = 0;
-	int fiole = 0;
-	int tab[10][10];
-
-	printf("Do you want to automatically create the level(0) or create it by yourself(1) ?");
-	scanf("%d",&input);
-
-	if(input == 0){ //Automatic
-		int tmp = 0;
-		int ligne = 4;
-		int colonne = 0;
-		int colempty = 0;
-		int nbColoredCol = 0;
-		int i = 0;
-		int j = 0;
-		bool solvable = true;
-
-		do
-		{
-			printf(" Entrez le nombre de colonne (max 10): ");
-			scanf("%d", &colonne);
-			fiole=colonne;
-
-		} while (colonne < 2);
-
-		if (colonne < 7 && colonne >= 5)
-		{
-			colempty = 2;
-		}
-
-		else if (colonne >= 7)
-		{
-			colempty = 3;
-		}
-		else
-		{
-			colempty = 1;
-		}
-
-		nbColoredCol = colonne - colempty;
-		couleurs=nbColoredCol;
-
-		int x1 = rand() % 4;
-		int x2 = rand() % 4;
-		int y1 = rand() % nbColoredCol;
-		int y2 = rand() % nbColoredCol;
-
-		printf("Il y aura %d fioles vides \n", colempty);
-
-		printf(" Le tableau 2D = \n");
-
-		perftab(tab, nbColoredCol);
-		initEmptyCol(tab, nbColoredCol, colonne);
-		affichtab(tab, ligne, colonne);
-
-		printf("Nouveau tableau automatique : \n");
-
-		for (int i = 0; i <= 200; i++)
-		{
-			int nvx = rand() % colonne;
-			int nvX = rand() % colonne;
-			int nvNombre = rand() % 3;
-
-			translateCheat(tab, colonne, nvx, nvX, nvNombre);
-		}
-		
-		affichtab(tab, 4, colonne);
-	}
-	else { //Manual
-
-		int tmp = 0;
-		int ligne = 4;
-		int colonne = 0;
-		int colempty = 0;
-		int nbColoredCol = 0;
-		int i = 0;
-		int j = 0;
-		int nvx = 0;
-		int nvX = 0;
-		int nvNombre = 0;
-		int chang = 0;
-		bool solvable = true;
-		bool loop = true;
-
-		do
-		{
-			printf(" Entrez le nombre de colonne (max 10): ");
-			scanf("%d", &colonne);
-
-		} while (colonne < 2);
-
-		if (colonne < 7 && colonne >= 5)
-		{
-			colempty = 2;
-		}
-
-		else if (colonne >= 7)
-		{
-			colempty = 3;
-		}
-		else
-		{
-			colempty = 1;
-		}
-
-		nbColoredCol = colonne - colempty;
-
-		printf("\nIl y aura %d fioles vides \n", colempty);
-
-		printf("\n Le tableau 2D : \n");
-
-		perftab(tab, nbColoredCol);
-		initEmptyCol(tab, nbColoredCol, colonne);
-		affichtab(tab, ligne, colonne);
-
-		printf("\n");
-
-		printf("Nouveau tableau manuel : \n");
-
-		do
-		{
-
-			do
-			{
-				printf("\n Veuillez renseigner la colonne de depart ( min : 0 ) ( renseignez -1 pour stopper le melange ): \n");
-				scanf("%d", &nvx);
-
-				if (nvx == -1)
-				{
-					loop = false;
-				}
-
-			} while (nvx > 4 && loop);
-
-			if (loop)
-			{
-
-				do
-				{
-					printf("Veuillez renseigner la colonne d'arrive ( max : %d ) : \n", colonne - 1);
-					scanf("%d", &nvX);
-
-				} while (nvX > colonne);
-
-				do
-				{
-					printf("Veuillez renseigner combien de valeurs voulez vous deplacer ( max : 3 ) : \n");
-					scanf("%d", &nvNombre);
-
-				} while (nvNombre > 3);
-
-				translateCheat(tab, colonne, nvx, nvX, nvNombre);
-
-				affichtab(tab, 4, colonne);
-			}
-		} while (loop != false);
-	}
-
-	// Initialize access to the file
-	const char *filename = "pattern.json";
-	json_object *root = json_object_from_file("pattern.json");
-
-	// Edit nbColors
-	json_object *nbColors = json_object_object_get(root, "nbColors");
-	json_object_set_int(nbColors, couleurs);
-
-	// Edit nbFlasks
-	json_object *nbFlasks = json_object_object_get(root, "nbFlasks");
-	json_object_set_int(nbFlasks, fiole);
-
-	json_object *flasks = json_object_object_get(root, "flasks"); // we go to the array flasks
-	json_object *fioles[20];
-	for (int i = 0; i < fiole; i++)
-	{
-		fioles[i] = json_object_array_get_idx(flasks, i); // we create a var for each flasks
-	}
-
-	json_object *step[20][4];
-	for (int i = 0; i < fiole; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			step[i][j] = json_object_array_get_idx(fioles[i], j); // we setup step[i][j] for easy acces in the future.
-		}
-	}
-
-	for (int i = 0; i < fiole; i++)
-	{
-		for (int j = 0; j < 4; j++)
-		{
-			json_object_set_int(step[i][j], tab[j][i]); // Sending tab into the json
-		}
-	}
 	
-	json_object_to_file("map.json", root); // saving the json to map.json
-	json_object_put(root);
-	return 0;
+	/*int colonne = 0;
+	int colempty = 0;
+	pile* pilejeux;
+	newpile(&pilejeux, 4);
+	int val = 0;
+	int tab[10][10] = { 0 };
 
-	/*
+
+	do {
+		printf(" Entrez le nombre de colonne (max 10): ");
+		scanf("%d", &colonne);
+
+	} while (colonne < 2);
+
+	if (colonne < 7 && colonne >= 5) {
+		colempty = 2;
+	}
+	else if (colonne >= 7) {
+		colempty = 3;
+	}
+	else {
+		colempty = 1;
+	}
+
+	printf("Il y aura %d fioles vides \n", colempty);
+	
+	
+	perfpile(pilejeux, colonne, colempty);
+	emptypile(colempty);
+
+	for (int k = 0; k < 4; k++) {
+		for (int p = 0; p < 4; p++) {
+			pull(pilejeux, &val);
+			tab[k][p] = val;
+			printf("%d ", tab[k][p]);
+		}
+	}
+
+	pilechange(colonne, colempty);*/
+
 	srand(time(NULL));
 
 	int tmp = 0;
@@ -241,6 +80,8 @@ int main() {
 
 		perftab(tab, nbColoredCol);
 		initEmptyCol(tab, nbColoredCol, colonne);
+		swap(tab, 0, 0, 0, 2);
+		swap(tab, 1, 0, 1, 2);
 
 		affichtab(tab, ligne, colonne);
 
@@ -248,31 +89,36 @@ int main() {
 
 		// melangtab(tab, nbColoredCol, colonne);
 
-		//translateCheat(tab, 3, 0, 2, 2);
+		translateCheat(tab, colonne,1,3,1);
 
-		translateCheat(tab,colonne,0,3,2);
-		translateCheat(tab, colonne, 0, 4, 1);
-		translateCheat(tab, colonne, 2, 3, 2);
+		
 
-		affichtab(tab, ligne, colonne);
-		// translate(tab,colonne,0,4);
+		/*solvable = isSolvable(tab, ligne, colonne);
 
-		solve(tab,colonne);
+		while (solvable == false) {
+			printf("Solution impossible, nouveau tableau : \n");
+			affichtab(tab, ligne, colonne);
+		}		
 
-		affichtab(tab, ligne, colonne);*/
-}
+	while (isWin(tab, ligne, colonne) == false) {
 
-void delay(int number_of_seconds)
-{
-	// Converting time into milli_seconds
-	int milli_seconds = 1000 * number_of_seconds;
+		if (isWin(tab, ligne, colonne)) {
+			printf("Gagne !\n");
+			return 0;
+		}
+		else {
+			printf("perdu ! modifie quelque chose \n");
+			printf("Deplacement d'un nombre dans un autre tube : \n");
 
-	// Storing start time
-	clock_t start_time = clock();
+			swap(tab);
 
-	// looping till required time is not achieved
-	while (clock() < start_time + milli_seconds)
-		;
+			printf("Le nouveau tableau en 2D =\n ");
+
+			affichtab(tab, ligne, colonne);
+		}
+	}
+	printf("C'est gagne !");
+	*/
 }
 
 int swap(int tab[10][10], int premierx, int premiery, int secondx, int secondy) {
@@ -287,157 +133,6 @@ int swap(int tab[10][10], int premierx, int premiery, int secondx, int secondy) 
 	return 0;
 }
 
-list *updateFull(int tab[10][10], list full[10], int nbFlasks)
-{
-	bool loop=true;
-	int start;
-
-	for (int i = 0; i < 10; i++)
-	{
-		full[i].color = 0;
-		full[i].size = 0;
-		full[i].sizeEmpty = 0;
-		full[i].index = i;
-	}
-
-	for (int y = 0; y < nbFlasks; y++)
-	{
-		for (int i = 0; i < 4 && loop; i++)
-		{
-			if (full[y].color == 0 && tab[i][y] != 0)
-			{
-				full[y].color = tab[i][y];
-				start = i;
-				full[y].sizeEmpty = start;
-			}
-			if (i == 0)
-			{
-				full[y].color = tab[i][y];
-			}
-			else if (full[y].color != tab[i][y])
-			{
-				full[y].size = i - start;
-				loop = false;
-			}
-			else if (i == 3)
-			{
-				full[y].size = 4 - start;
-				loop = false;
-				if (full[y].color == 0)
-				{
-					full[y].sizeEmpty = 4;
-				}
-			}
-		}
-		loop = true;
-	}
-
-	return full;
-}
-
-void Swap(list *xp, list *yp)
-{
-	list temp = *xp;
-	*xp = *yp;
-	*yp = temp;
-}
-
-void bubbleSort(list full[], int nbFlasks)
-{
-	int i, j;
-	for (i = 0; i < nbFlasks - 1; i++)
-
-		// Last i elements are already in place
-		for (j = 0; j < nbFlasks - i - 1; j++)
-			if (full[j].size > full[j + 1].size)
-				Swap(&full[j], &full[j + 1]);
-}
-
-bool solve(int tab[10][10], int nbFlasks){
-	list full[10];
-	bool bit=true;
-
-	while(!isWin(tab,nbFlasks,4)){
-		updateFull(tab, full, nbFlasks);
-
-		bubbleSort(full, nbFlasks);
-
-		int first = rand() % nbFlasks;
-		int second;
-
-		while (bit)
-		{
-			second = rand() % nbFlasks;
-			for(int i=0; i<20 && full[second].color != full[first].color;i++){
-				bit = true;
-			}
-		}
-		translate(tab, nbFlasks, first, second);
-		affichtab(tab,nbFlasks, 4);
-	}
-
-	
-
-
-
-
-	/*
-	bool loop=true;
-	list first;
-	list second;
-	int y=0;
-	int start;
-	list full[10];
-	
-
-	while (!isWin(tab, nbFlasks, 4)){
-
-		updateFull(tab, full, nbFlasks);
-
-		bubbleSort(full, nbFlasks);
-
-		for(int i=0; i<nbFlasks; i++){
-			printf("full[i].color=%d full[i].size=%d full[i].sizeEmpty=%d full[i].index=%d\n",full[i].color ,full[i].size ,full[i].sizeEmpty ,full[i].index);
-		}
-
-		first = full[0];
-		for (int i = nbFlasks-1; i >= 1 && loop; i--)
-		{
-			if (full[i].color == first.color && first.size <= full[i].sizeEmpty)
-			{
-				printf("full[i].color=%d index=%d, first.color=%d index=%d\n",full[i].color,full[i].index, first.color, first.index);
-				second = full[i];
-				y=0;
-				loop = false;
-			}
-			else if (i == 1)
-			{
-				if (y == 1)
-				{
-					return false; // We are stuck, we return false to let know we need to restart
-				}
-				if (first.color == 0)
-				{
-					i = nbFlasks-1;
-					y++;
-					first = full[y];
-				}
-				else{
-				first.color = 0;
-				i = 1;
-				}
-			}
-		}
-		delay(100);
-		printf("first.index = %d, second.index = %d\n", first.index, second.index);
-		translate(tab,nbFlasks,first.index,second.index);
-		loop=true;
-		affichtab(tab,4,nbFlasks);
-	}
-
-	return isWin(tab, nbFlasks, 4);*/
-}
-
 bool translate(int tab[10][10], int nbFlasks, int x, int X){
 	int tmp=0;
 	int nbx=0;
@@ -448,7 +143,7 @@ bool translate(int tab[10][10], int nbFlasks, int x, int X){
 	int result;
 	bool bit=true;
 	
-	if(x>= nbFlasks || X>= nbFlasks || x==X){
+	if(x>= nbFlasks || X>= nbFlasks){
 		return false;
 	}
 
@@ -464,15 +159,15 @@ bool translate(int tab[10][10], int nbFlasks, int x, int X){
 			tmp=tab[i][x];
 			colorx=tmp;
 			start=i;
-			nbx++;
 		}
-		if(tab[i][x]!=tmp){
+		else if(tab[i][x]!=tmp){
 			nbx=i-start;
 			bit=false;
 		}
 		else if(i==3){
-			nbx = i - start + 1;
+			nbx=i-start+1;
 		}
+		printf("tab[i][x]=%d, tmp=%d, start=%d, colorx=%d, nbx=%d\n", tab[i][x], tmp, start, colorx, nbx);
 	}
 
 	bit=true;
@@ -487,6 +182,8 @@ bool translate(int tab[10][10], int nbFlasks, int x, int X){
 		}
 	}
 
+	printf("nbx=%d, nbX=%d,colorx=%d, colorX=%d\n",nbx, nbX, colorx, colorX);
+
 	if(nbx>nbX || (colorx!= colorX && colorX!=0)){
 		result=false;
 	}
@@ -498,6 +195,8 @@ bool translate(int tab[10][10], int nbFlasks, int x, int X){
 			tab[start + i][x] = 0;
 		}
 	}
+
+	affichtab(tab,4,5);
 
 	return result;
 }
@@ -513,7 +212,7 @@ bool translateCheat(int tab[10][10], int nbFlasks, int x, int X, int nbMove)
 	int result;
 	bool bit = true;
 
-	if (x >= nbFlasks || X >= nbFlasks || x==X)
+	if (x >= nbFlasks || X >= nbFlasks)
 	{
 		return false;
 	}
@@ -544,6 +243,7 @@ bool translateCheat(int tab[10][10], int nbFlasks, int x, int X, int nbMove)
 		{
 			nbx = i - start + 1;
 		}
+		printf("tab[i][x]=%d, tmp=%d, start=%d, colorx=%d, nbx=%d\n", tab[i][x], tmp, start, colorx, nbx);
 	}
 
 	
@@ -568,6 +268,7 @@ bool translateCheat(int tab[10][10], int nbFlasks, int x, int X, int nbMove)
 		return false;
 	}
 
+	printf("nbx=%d, nbX=%d,colorx=%d, colorX=%d\n", nbx, nbX, colorx, colorX);
 
 	if (nbMove > nbX)
 	{
@@ -579,10 +280,12 @@ bool translateCheat(int tab[10][10], int nbFlasks, int x, int X, int nbMove)
 		result = true;
 		for (int i = 0; i < nbMove; i++)
 		{
-			tab[(nbX - 1 - i)][X] = tab[start + i][x];
+			tab[(nbx - 1 - i)][X] = tab[start + i][x];
 			tab[start + i][x] = 0;
 		}
 	}
+
+	affichtab(tab, 4, 5);
 
 	return result;
 }
@@ -700,6 +403,13 @@ bool isSolvable(int tab[10][10], int sizex, int sizey) {
 				success = false;
 			}
 	return success;
+}
+
+int solveur(int tab[10][10]) {
+
+
+
+	return 0;
 }
 
 bool isFull(int tab[10][10], int pos) {

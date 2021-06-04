@@ -1,4 +1,4 @@
-var Options = function(game) {};
+let Options = function(game) {};
 
 Options.prototype = {
 
@@ -19,13 +19,10 @@ Options.prototype = {
     this.titleText.anchor.set(0.5);
     this.optionCount = 1;
   },
+
   create: function () {
     game.add.sprite(0, 0, 'background3');
     game.add.existing(this.titleText);
-
-    this.addMenuOption('<- Back', function () {
-      game.state.start("GameMenu");
-    });
   }
 };
 

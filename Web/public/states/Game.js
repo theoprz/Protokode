@@ -1,4 +1,4 @@
-var Game = function(game) {};
+let Game = function(game) {};
 
 Game.prototype = {
 
@@ -38,16 +38,16 @@ Game.prototype = {
 
 
 
-    this.addMenuOption('Level 1-5', function (e) {
+    this.addMenuOption('Level 1 -5', function (e) {
       this.game.state.start("niveau1");
     });
-    this.addMenuOption('Level 6-10', function (e) {
+    this.addMenuOption('Level 6 -10', function (e) {
       this.game.state.start("niveau2");
     });
-    this.addMenuOption('Level 11-15', function (e) {
+    this.addMenuOption('Level 11 -15', function (e) {
       this.game.state.start("niveau3");
     });
-    this.addMenuOption('Level 16-20', function (e) {
+    this.addMenuOption('Level 16 -20', function (e) {
       this.game.state.start("niveau4");
     });
     this.addMenuOption('Menu', function (e) {
