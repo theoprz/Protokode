@@ -19,18 +19,13 @@ GameMenu.prototype = {
     this.optionCount = 1;
   },
 
-  create: function () {
-    music = game.add.audio('credit-musique');
-    music.stop();
+  create: function () { 
     game.stage.disableVisibilityChange = true;
     game.add.sprite(0, 0, 'background4');
     game.add.existing(this.titleText);
 
     this.addMenuOption('Start', function () {
       game.state.start("Game");
-    });
-    this.addMenuOption('Options', function () {
-      game.state.start("Options");
     });
     this.addMenuOption('Credits', function () {
       game.state.start("Credits");

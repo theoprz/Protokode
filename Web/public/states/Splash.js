@@ -6,12 +6,12 @@ Splash.prototype = {
     game.load.script('style', '../lib/style.js');
     game.load.script('mixins', '../lib/mixins.js');
     game.load.script('WebFont', '../vendor/webfontloader.js');
-    game.load.script('gamemenu','../states/GameMenu.js');
+    game.load.script('gamemenu','../states/gamemenu.js');
     game.load.script('game', '../states/Game.js');
-    game.load.script('gameover','../states/GameOver.js');
+    game.load.script('gameover','../states/gameover.js');
     game.load.script('gamescreen','../states/gamescreen.js');
-    game.load.script('credits', '../states/Credits.js');
-    game.load.script('options', '../states/Options.js');
+    game.load.script('credits', '../states/credits.js');
+    game.load.script('options', '../states/options.js');
     game.load.script('niveau1', '../states/niveau1.js');
     game.load.script('niveau2', '../states/niveau2.js');
     game.load.script('niveau3', '../states/niveau3.js');
@@ -27,7 +27,6 @@ Splash.prototype = {
     game.load.image('background4', '../assets/images/background4.png');
     game.load.image('background5', '../assets/images/background5.png');
     game.load.image('background6', '../assets/images/background6.png');
-    game.load.image('gameover-bg', '../assets/images/gameover-bg.jpg');
     game.load.image('win', '../assets/images/win.png');
   },
 
