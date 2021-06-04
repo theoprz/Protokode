@@ -20,31 +20,14 @@ Options.prototype = {
     this.optionCount = 1;
   },
   create: function () {
-    let playSound = gameOptions.playSound,
-        playMusic = gameOptions.playMusic;
-
     game.add.sprite(0, 0, 'background3');
     game.add.existing(this.titleText);
-    /*
-    this.addMenuOption(playMusic ? 'Mute Music' : 'Play Music', function (target) {
-      playMusic = !playMusic;
-      target.text = playMusic ? 'Mute Music' : 'Play Music';
-      musicPlayer.volume = playMusic ? 1 : 0;
-    });
-    this.addMenuOption(playSound ? 'Mute Sound' : 'Play Sound', function (target) {
-      playSound = !playSound;
-      target.text = playSound ? 'Mute Sound' : 'Play Sound';
-    });
-    */
-    
+
     this.addMenuOption('<- Back', function () {
       game.state.start("GameMenu");
     });
   }
 };
 
-function actionOnClick () {
-  music.paused = !music.paused
-}
 
 Phaser.Utils.mixinPrototype(Options.prototype, mixins);

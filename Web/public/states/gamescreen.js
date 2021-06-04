@@ -2,12 +2,24 @@ let gamescreen = function(game) {};
 
 gamescreen.prototype = {
 
+    init: function(data){
+        this.level = data.level || [[0,0,1,1],[0,0,1,1]];
+        this.levelNumber = data.levelNumber;
+    },
+
     preload: function () {
         game.load.image('fiole', 'img/button-bg.png');
         game.load.image('fondBleu', 'img/fond-bleu.png');
         game.load.image('fondRouge', 'img/fond-rouge.png');
         game.load.image('rouge', 'img/rouge.png');
         game.load.image('bleu', 'img/bleu.png');
+        game.load.image('fondJaune', 'img/fond-jaune.png');
+        game.load.image('jaune', 'img/jaune.png');
+        game.load.image('fondViolet', 'img/fond-violet.png');
+        game.load.image('violet', 'img/violet.png');
+        game.load.image('fondVert', 'img/fond-vert.png');
+        game.load.image('vert', 'img/vert.png');
+        game.load.spritesheet('button', 'img/restart_button.png', 512, 512);
     },
 
     create: function () {
@@ -15,18 +27,11 @@ gamescreen.prototype = {
 
     fioleGroup = game.add.group();
 
-    for (let i = 0; i < 3; i++) {
-        fioleGroup.create(150+(i*234), 234, 'fiole');
-    }
+    this.tabToGame(this.level);
+    textLvl = game.add.text(game.world.centerX, 30, "Level: " + this.levelNumber);
+    button = game.add.button(1450, 0, 'button', this.actionOnClick, this, 2, 1, 0);
+    button.scale.setTo(0.2, 0.2);
 // Hauteur: (51)
-    fioleGroup.children[0].addChild(game.add.sprite(0,0,'fondBleu'));
-    fioleGroup.children[0].addChild(game.add.sprite(0,0, 'rouge'));
-    fioleGroup.children[0].addChild(game.add.sprite(0,-50,'bleu'));
-    fioleGroup.children[0].addChild(game.add.sprite(0,-100,'rouge'));
-    fioleGroup.children[2].addChild(game.add.sprite(0,0,'fondRouge'));
-    fioleGroup.children[2].addChild(game.add.sprite(0,0,'bleu'));
-    fioleGroup.children[2].addChild(game.add.sprite(0,-50,'rouge'));
-    fioleGroup.children[2].addChild(game.add.sprite(0,-100,'bleu'));
 
     fioleGroup.forEach(items => {
         items.inputEnabled = true
@@ -44,22 +49,20 @@ gamescreen.prototype = {
         game.state.start("GameOver");
     }
 
-    if(!fioleGroup.children[0].children[0] || !fioleGroup.children[1].children[0] || !fioleGroup.children[2].children[0] || !fioleGroup.children[0]){
-        return;
+    //this.tabToGame(this.gameToTab(this.emptyVials(this.createMatrix(fioleGroup.children.length))));
+    if((fioleGroup.children[0] && !fioleGroup.children[0].children[0]) || (fioleGroup.children[1] && !fioleGroup.children[1].children[0]) || (fioleGroup.children[2] && !fioleGroup.children[2].children[0]) || (fioleGroup.children[3] && !fioleGroup.children[3].children[0]) || (fioleGroup.children[4] && !fioleGroup.children[4].children[0])){
+        return 0;
     }
-    fioleGroup.forEach(items => {
-        if(items.children[0].key === "rouge"){
-            items.children.pop();
-            items.addChild(game.add.sprite(0, 0, 'fondRouge'));
-        }
-        if(items.children[0].key === "bleu"){
-            items.children.pop();
-            items.addChild(game.add.sprite(0, 0, 'fondBleu'));
-        }
-    })
+
+    //this.refreshTubes();
 
     },
 
+
+    actionOnClick: function(){
+        alert("Level Restarted !");
+        game.state.restart(true, false, {level: this.level});
+    },
 
     startDrag: function (item) {
     item.body.moves = false;
@@ -72,10 +75,7 @@ gamescreen.prototype = {
     item.position.y = startPosY;
     item.body.moves = true;
     let draggedHigherPos = item.children.length - 1;
-    if(item.children.length === 0) return;
     let higherColor = item.children[draggedHigherPos].key;
-
-    if(draggedHigherPos < 0) draggedHigherPos = 0;
 
     switch(higherColor){
         case "fondRouge": {
@@ -86,23 +86,55 @@ gamescreen.prototype = {
             higherColor = "bleu"
             break;
         }
+        case "fondJaune": {
+            higherColor = "jaune"
+            break;
+        }
+        case "fondVert": {
+            higherColor = "vert"
+            break;
+        }
+        case "fondViolet": {
+            higherColor = "violet"
+            break;
+        }
     }
     game.physics.arcade.overlap(item, fioleGroup.children[0], function() {
-        let pointerHigherPos = fioleGroup.children[0].children.length - 1;
+        let pointerHigherPos = fioleGroup.children[0].children.length;
         switch(higherColor){
-            case "fondRouge":{
-                if(fioleGroup.children[0].children[pointerHigherPos].key !== ("rouge" || "fondRouge")){
+            case "fondRouge":
+            case "rouge":{
+                if(fioleGroup.children[0].children[pointerHigherPos] && fioleGroup.children[0].children[pointerHigherPos].key !== 'rouge' && fioleGroup.children[0].children[pointerHigherPos].key !== 'fondRouge'){
                     return;
                 }
                 break;
             }
-            case "fondBleu":{
-                break;
-            }
-            case "rouge":{
-                break;
-            }
+            case "fondBleu":
             case "bleu":{
+                if(fioleGroup.children[0].children[pointerHigherPos] && fioleGroup.children[0].children[pointerHigherPos].key !== 'bleu' && fioleGroup.children[0].children[pointerHigherPos].key !== 'fondBleu'){
+                    return;
+                }
+                break;
+            }
+            case "fondJaune":
+            case "jaune":{
+                if(fioleGroup.children[0].children[pointerHigherPos] && fioleGroup.children[0].children[pointerHigherPos].key !== 'jaune' && fioleGroup.children[0].children[pointerHigherPos].key !== 'fondJaune'){
+                    return;
+                }
+                break;
+            }
+            case "fondVert":
+            case "vert":{
+                if(fioleGroup.children[0].children[pointerHigherPos] && fioleGroup.children[0].children[pointerHigherPos].key !== 'vert' && fioleGroup.children[0].children[pointerHigherPos].key !== 'fondVert'){
+                    return;
+                }
+                break;
+            }
+            case "fondViolet":
+            case "violet":{
+                if(fioleGroup.children[0].children[pointerHigherPos] && fioleGroup.children[0].children[pointerHigherPos].key !== 'violet' && fioleGroup.children[0].children[pointerHigherPos].key !== 'fondViolet'){
+                    return;
+                }
                 break;
             }
         }
@@ -113,9 +145,45 @@ gamescreen.prototype = {
             fioleGroup.children[0].addChild(game.add.sprite(0,0, higherColor));
         }
     });
-
     game.physics.arcade.overlap(item, fioleGroup.children[1], function() {
-        console.log(item.key);
+        let pointerHigherPos = fioleGroup.children[1].children.length;
+        switch(higherColor){
+            case "fondRouge":
+            case "rouge":{
+                if(fioleGroup.children[1].children[pointerHigherPos] && fioleGroup.children[1].children[pointerHigherPos].key !== 'rouge' && fioleGroup.children[1].children[pointerHigherPos].key !== 'fondRouge'){
+                    return;
+                }
+                break;
+            }
+            case "fondBleu":
+            case "bleu":{
+                if(fioleGroup.children[1].children[pointerHigherPos] && fioleGroup.children[1].children[pointerHigherPos].key !== 'bleu' && fioleGroup.children[1].children[pointerHigherPos].key !== 'fondBleu'){
+                    return;
+                }
+                break;
+            }
+            case "fondJaune":
+            case "jaune":{
+                if(fioleGroup.children[1].children[pointerHigherPos] && fioleGroup.children[1].children[pointerHigherPos].key !== 'jaune' && fioleGroup.children[1].children[pointerHigherPos].key !== 'fondJaune'){
+                    return;
+                }
+                break;
+            }
+            case "fondVert":
+            case "vert":{
+                if(fioleGroup.children[1].children[pointerHigherPos] && fioleGroup.children[1].children[pointerHigherPos].key !== 'vert' && fioleGroup.children[1].children[pointerHigherPos].key !== 'fondVert'){
+                    return;
+                }
+                break;
+            }
+            case "fondViolet":
+            case "violet":{
+                if(fioleGroup.children[1].children[pointerHigherPos] && fioleGroup.children[1].children[pointerHigherPos].key !== 'violet' && fioleGroup.children[1].children[pointerHigherPos].key !== 'fondViolet'){
+                    return;
+                }
+                break;
+            }
+        }
         item.children.pop();
         if(fioleGroup.children[1].children.length >= 2){
             fioleGroup.children[1].addChild(game.add.sprite(0,-(fioleGroup.children[1].children.length - 1) * 50, higherColor));
@@ -124,6 +192,44 @@ gamescreen.prototype = {
         }
     });
     game.physics.arcade.overlap(item, fioleGroup.children[2], function() {
+        let pointerHigherPos = fioleGroup.children[2].children.length;
+        switch(higherColor){
+            case "fondRouge":
+            case "rouge":{
+                if(fioleGroup.children[2].children[pointerHigherPos] && fioleGroup.children[2].children[pointerHigherPos].key !== 'rouge' && fioleGroup.children[2].children[pointerHigherPos].key !== 'fondRouge'){
+                    return;
+                }
+                break;
+            }
+            case "fondBleu":
+            case "bleu":{
+                if(fioleGroup.children[2].children[pointerHigherPos] && fioleGroup.children[2].children[pointerHigherPos].key !== 'bleu' && fioleGroup.children[2].children[pointerHigherPos].key !== 'fondBleu'){
+                    return;
+                }
+                break;
+            }
+            case "fondJaune":
+            case "jaune":{
+                if(fioleGroup.children[2].children[pointerHigherPos] && fioleGroup.children[2].children[pointerHigherPos].key !== 'jaune' && fioleGroup.children[2].children[pointerHigherPos].key !== 'fondJaune'){
+                    return;
+                }
+                break;
+            }
+            case "fondVert":
+            case "vert":{
+                if(fioleGroup.children[2].children[pointerHigherPos] && fioleGroup.children[2].children[pointerHigherPos].key !== 'vert' && fioleGroup.children[2].children[pointerHigherPos].key !== 'fondVert'){
+                    return;
+                }
+                break;
+            }
+            case "fondViolet":
+            case "violet":{
+                if(fioleGroup.children[2].children[pointerHigherPos] && fioleGroup.children[2].children[pointerHigherPos].key !== 'violet' && fioleGroup.children[2].children[pointerHigherPos].key !== 'fondViolet'){
+                    return;
+                }
+                break;
+            }
+        }
         item.children.pop();
         if(fioleGroup.children[2].children.length >= 2){
             fioleGroup.children[2].addChild(game.add.sprite(0,-(fioleGroup.children[2].children.length - 1) * 50, higherColor));
@@ -131,6 +237,100 @@ gamescreen.prototype = {
             fioleGroup.children[2].addChild(game.add.sprite(0,0, higherColor));
         }
     });
+    game.physics.arcade.overlap(item, fioleGroup.children[3], function() {
+        let pointerHigherPos = fioleGroup.children[3].children.length;
+        switch(higherColor){
+            case "fondRouge":
+            case "rouge":{
+                if(fioleGroup.children[3].children[pointerHigherPos] && fioleGroup.children[3].children[pointerHigherPos].key !== 'rouge' && fioleGroup.children[3].children[pointerHigherPos].key !== 'fondRouge'){
+                    return;
+                }
+                break;
+            }
+            case "fondBleu":
+            case "bleu":{
+                if(fioleGroup.children[3].children[pointerHigherPos] && fioleGroup.children[3].children[pointerHigherPos].key !== 'bleu' && fioleGroup.children[3].children[pointerHigherPos].key !== 'fondBleu'){
+                    return;
+                }
+                break;
+            }
+            case "fondJaune":
+            case "jaune":{
+                if(fioleGroup.children[3].children[pointerHigherPos] && fioleGroup.children[3].children[pointerHigherPos].key !== 'jaune' && fioleGroup.children[3].children[pointerHigherPos].key !== 'fondJaune'){
+                    return;
+                }
+                break;
+            }
+            case "fondVert":
+            case "vert":{
+                if(fioleGroup.children[3].children[pointerHigherPos] && fioleGroup.children[3].children[pointerHigherPos].key !== 'vert' && fioleGroup.children[3].children[pointerHigherPos].key !== 'fondVert'){
+                    return;
+                }
+                break;
+            }
+            case "fondViolet":
+            case "violet":{
+                if(fioleGroup.children[3].children[pointerHigherPos] && fioleGroup.children[3].children[pointerHigherPos].key !== 'violet' && fioleGroup.children[3].children[pointerHigherPos].key !== 'fondViolet'){
+                    return;
+                }
+                break;
+            }
+        }
+        item.children.pop();
+            if(fioleGroup.children[3].children.length >= 2){
+                fioleGroup.children[3].addChild(game.add.sprite(0,-(fioleGroup.children[3].children.length - 1) * 50, higherColor));
+            }else {
+                fioleGroup.children[3].addChild(game.add.sprite(0,0, higherColor));
+            }
+    });
+    game.physics.arcade.overlap(item, fioleGroup.children[4], function() {
+        let pointerHigherPos = fioleGroup.children[1].children.length;
+        switch(higherColor){
+            case "fondRouge":
+            case "rouge":{
+                if(fioleGroup.children[4].children[pointerHigherPos] && fioleGroup.children[4].children[pointerHigherPos].key !== 'rouge' && fioleGroup.children[4].children[pointerHigherPos].key !== 'fondRouge'){
+                    return;
+                }
+                break;
+            }
+            case "fondBleu":
+            case "bleu":{
+                if(fioleGroup.children[4].children[pointerHigherPos] && fioleGroup.children[4].children[pointerHigherPos].key !== 'bleu' && fioleGroup.children[4].children[pointerHigherPos].key !== 'fondBleu'){
+                    return;
+                }
+                break;
+            }
+            case "fondJaune":
+            case "jaune":{
+                if(fioleGroup.children[4].children[pointerHigherPos] && fioleGroup.children[4].children[pointerHigherPos].key !== 'jaune' && fioleGroup.children[4].children[pointerHigherPos].key !== 'fondJaune'){
+                    return;
+                }
+                break;
+            }
+            case "fondVert":
+            case "vert":{
+                if(fioleGroup.children[4].children[pointerHigherPos] && fioleGroup.children[4].children[pointerHigherPos].key !== 'vert' && fioleGroup.children[4].children[pointerHigherPos].key !== 'fondVert'){
+                    return;
+                }
+                break;
+            }
+            case "fondViolet":
+            case "violet":{
+                if(fioleGroup.children[4].children[pointerHigherPos] && fioleGroup.children[4].children[pointerHigherPos].key !== 'violet' && fioleGroup.children[4].children[pointerHigherPos].key !== 'fondViolet'){
+                    return;
+                }
+                break;
+            }
+        }
+        item.children.pop();
+        if(fioleGroup.children[4].children.length >= 2){
+            fioleGroup.children[4].addChild(game.add.sprite(0,-(fioleGroup.children[4].children.length - 1) * 50, higherColor));
+        }else {
+            fioleGroup.children[4].addChild(game.add.sprite(0,0, higherColor));
+        }
+    });
+
+    this.refreshTubes();
 },
 
     isEmpty: function (tube){
@@ -147,11 +347,9 @@ gamescreen.prototype = {
 
     for (let i = 0; i < fioleGroup.children.length; i++) {
         if(tab[i][0] === undefined) tab[i][0] = 0;
-        console.log(tab[1][0]);
         for (let j = 0; j < 4; j++) {
             if (j === 0) {
                 tmp = tab[i][j];
-                console.log("Tmp:" + tmp);
             }
             if(tab[i][j] !== tmp) {
                 isWin = false;
@@ -160,8 +358,6 @@ gamescreen.prototype = {
     }
     if(isWin === true){
         console.log("C'est Win !");
-    }else{
-        console.log("Pas encore win....");
     }
     return isWin;
 },
@@ -209,20 +405,29 @@ gamescreen.prototype = {
                 return;
             }
             switch(colours.key){
-                case "rouge":{
-                    key = 1;
-                    break;
-                }
+                case "rouge":
                 case "fondRouge":{
                     key = 1;
                     break;
                 }
-                case "bleu":{
+                case "bleu":
+                case "fondBleu":{
                     key = 2;
                     break;
                 }
-                case "fondBleu":{
-                    key = 2;
+                case "jaune":
+                case "fondJaune":{
+                    key = 3;
+                    break;
+                }
+                case "vert":
+                case "fondVert":{
+                    key = 4;
+                    break;
+                }
+                case "violet":
+                case "fondViolet":{
+                    key = 5;
                     break;
                 }
                 default:{
@@ -235,6 +440,85 @@ gamescreen.prototype = {
         })
     });
     return tab;
-}
+},
 
+    tabToGame: function(tab){
+        for (let i = 0; i < tab.length; i++) {
+            fioleGroup.create(150+(i*234), 234, 'fiole');
+        }
+        let i = 0;
+        tab.forEach(tubes =>{
+            tubes.forEach(async colours =>{
+                switch(colours){
+                    case 1:{ // rouge
+                        if(fioleGroup.children[i].children.length < 1){
+                            fioleGroup.children[i].addChild(game.add.sprite(0,-(fioleGroup.children[i].children.length) * 50, 'fondRouge'));
+                        }else{
+                            fioleGroup.children[i].addChild(game.add.sprite(0,(-(fioleGroup.children[i].children.length) + 1) * 50, 'rouge'));
+                        }
+                        break;
+                    }
+                    case 2:{ // bleu
+                        if(fioleGroup.children[i].children.length <= 0){
+                            fioleGroup.children[i].addChild(game.add.sprite(0,-(fioleGroup.children[i].children.length) * 50, 'fondBleu'));
+                        }else{
+                            fioleGroup.children[i].addChild(game.add.sprite(0,(-(fioleGroup.children[i].children.length) + 1) * 50, 'bleu'));
+                        }
+                        break;
+                    }
+                    case 3:{ // bleu
+                        if(fioleGroup.children[i].children.length <= 0){
+                            fioleGroup.children[i].addChild(game.add.sprite(0,-(fioleGroup.children[i].children.length) * 50, 'fondJaune'));
+                        }else{
+                            fioleGroup.children[i].addChild(game.add.sprite(0,(-(fioleGroup.children[i].children.length) + 1) * 50, 'jaune'));
+                        }
+                        break;
+                    }
+                    case 4:{ // bleu
+                        if(fioleGroup.children[i].children.length <= 0){
+                            fioleGroup.children[i].addChild(game.add.sprite(0,-(fioleGroup.children[i].children.length) * 50, 'fondVert'));
+                        }else{
+                            fioleGroup.children[i].addChild(game.add.sprite(0,(-(fioleGroup.children[i].children.length) + 1) * 50, 'vert'));
+                        }
+                        break;
+                    }
+                    case 5:{ // bleu
+                        if(fioleGroup.children[i].children.length <= 0){
+                            fioleGroup.children[i].addChild(game.add.sprite(0,-(fioleGroup.children[i].children.length) * 50, 'fondViolet'));
+                        }else{
+                            fioleGroup.children[i].addChild(game.add.sprite(0,(-(fioleGroup.children[i].children.length) + 1) * 50, 'violet'));
+                        }
+                        break;
+                    }
+                }
+            })
+
+            i++;
+        })
+    },
+
+    refreshTubes: function() {
+        fioleGroup.forEach(async items => {
+            if (items.children[0].key === "rouge") {
+                await items.children.pop();
+                items.addChild(game.add.sprite(0, 0, 'fondRouge'));
+            }
+            if (items.children[0].key === "bleu") {
+                items.children.pop();
+                items.addChild(game.add.sprite(0, 0, 'fondBleu'));
+            }
+            if (items.children[0].key === "jaune") {
+                items.children.pop();
+                items.addChild(game.add.sprite(0, 0, 'fondJaune'));
+            }
+            if (items.children[0].key === "vert") {
+                items.children.pop();
+                items.addChild(game.add.sprite(0, 0, 'fondVert'));
+            }
+            if (items.children[0].key === "violet") {
+                items.children.pop();
+                items.addChild(game.add.sprite(0, 0, 'fondViolet'));
+            }
+        })
+    }
 };

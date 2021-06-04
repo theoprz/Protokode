@@ -5,13 +5,13 @@ GameMenu.prototype = {
 
   menuConfig: {
     startY: 200,
-    startX: 670
+    startX: "center"
   },
 
   init: function () {
     this.titleText = game.make.text(game.world.centerX, 100, "Water Sort Puzzle", {
       font: 'bold 60pt TheMinion',
-      fill: '#FF0000',
+      fill: '#ff0000',
       align: 'center'
     });
     this.titleText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);
@@ -20,7 +20,8 @@ GameMenu.prototype = {
   },
 
   create: function () {
-
+    music = game.add.audio('credit-musique');
+    music.stop();
     game.stage.disableVisibilityChange = true;
     game.add.sprite(0, 0, 'background4');
     game.add.existing(this.titleText);

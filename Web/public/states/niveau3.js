@@ -37,20 +37,21 @@ niveau3.prototype = {
 
     
     this.addMenuOption('Level 11', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('Level 12', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('Level 13', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('Level 14', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('Level 15', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
+    
     this.addMenuOption('<- Back', function () {
         game.state.start("Game");
       });

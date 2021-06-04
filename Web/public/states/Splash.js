@@ -12,22 +12,23 @@ Splash.prototype = {
     game.load.script('gamescreen','../states/gamescreen.js');
     game.load.script('credits', '../states/Credits.js');
     game.load.script('options', '../states/Options.js');
+    game.load.script('niveau1', '../states/niveau1.js');
+    game.load.script('niveau2', '../states/niveau2.js');
+    game.load.script('niveau3', '../states/niveau3.js');
+    game.load.script('niveau4', '../states/niveau4.js');
   },
 
   loadBgm: function () {
-    // thanks Kevin Macleod at http://incompetech.com/
-    game.load.audio('dangerous', '../assets/bgm/Dangerous.mp3');
-    game.load.audio('exit', '../assets/bgm/Exit the Premises.mp3');
+    game.load.audio('credit-musique', '../assets/bgm/Project X.mp3');
   },
-  // varios freebies found from google image search
+
   loadImages: function () {
-    game.load.image('menu-bg', '../assets/images/menu-bg.jpg');
-    game.load.image('options-bg', '../assets/images/options-bg.jpg');
     game.load.image('background3', '../assets/images/background3.png');
     game.load.image('background4', '../assets/images/background4.png');
     game.load.image('background5', '../assets/images/background5.png');
     game.load.image('background6', '../assets/images/background6.png');
     game.load.image('gameover-bg', '../assets/images/gameover-bg.jpg');
+    game.load.image('win', '../assets/images/win.png');
   },
 
   loadFonts: function () {
@@ -47,7 +48,7 @@ Splash.prototype = {
   },
 
   preload: function () {
-    game.add.sprite(0, 0, 'stars');
+    game.add.sprite(0, 0, 'bg-loading');
     game.add.existing(this.logo).scale.setTo(0.5);
     game.add.existing(this.loadingBar);
     game.add.existing(this.status);
@@ -61,25 +62,21 @@ Splash.prototype = {
   },
 
   addGameStates: function () {
-
     game.state.add("GameMenu",GameMenu);
     game.state.add("Game",Game);
     game.state.add("GameOver",GameOver);
     game.state.add("gamescreen",gamescreen);
     game.state.add("Credits",Credits);
     game.state.add("Options",Options);
-  },
-
-  addGameMusic: function () {
-    let music = game.add.audio('dangerous');
-    music.loop = true;
-    music.play();
+    game.state.add("niveau1",niveau1);
+    game.state.add("niveau2",niveau2);
+    game.state.add("niveau3",niveau3);
+    game.state.add("niveau4",niveau4);
   },
 
   create: function() {
     this.status.setText('Ready!');
     this.addGameStates();
-    this.addGameMusic();
 
     setTimeout(function () {
       game.state.start("GameMenu");

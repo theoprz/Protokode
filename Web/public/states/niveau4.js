@@ -37,19 +37,19 @@ niveau4.prototype = {
 
     
     this.addMenuOption('Level 16', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('Level 17', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('Level 18', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('Level 19', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('Level 20', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen");
     });
     this.addMenuOption('<- Back', function (e) {
         game.state.start("Game");

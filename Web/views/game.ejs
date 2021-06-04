@@ -3,56 +3,28 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-<<<<<<< Updated upstream
     <title>Test</title>
     <meta name="description" content="test">
     <!-- Font Awesome -->
-=======
-    <title>Game</title>
-    <meta name="description" content="Game">
-	<!-- Font Awesome -->
->>>>>>> Stashed changes
     <script src="https://kit.fontawesome.com/65f54486e0.js" crossorigin="anonymous"></script>
     <!-- Google Fonts -->
     <link rel = "preconnect" href = "https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-<<<<<<< Updated upstream
     <!--Js-phaser-->
     <script src="../vendor/phaser.js"></script>
     <script src="../js/main.js"></script>
-=======
->>>>>>> Stashed changes
     <!-- CSS perso -->
-    <link rel="stylesheet" href="../css/style.css">
-    <!--Js-phaser-->
-    <script src="../vendor/phaser.js"></script>
-    <script src="../js/main.js"></script>
-    
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <%- include('templates/header.ejs'); %>
 <main>
-<<<<<<< Updated upstream
     <div id="game" class="game">
         <script>
             function isSolvable(tab, nbColors, nbFlasks) {
                 let isSolvable = true;
                 if (nbColors >= nbFlasks) { // Add count colors
                     isSolvable = false;
-=======
-    
-          
-    <div id="game" class="game">
-    <!--
-    <script>
-        function isWin(tab) { // We check if is win
-            let isWin = true;
-            for (let i = 0; i < tab.length; i++) {
-                for (let j = 0; j < tab.length; j++) {
-                    if (j === 0) {
-                        tmp = tab[i][j];
-                    }
->>>>>>> Stashed changes
                 }
                 return isSolvable;
             }
@@ -68,65 +40,10 @@
                 data.nbFlasks = <%= JSON.stringify(map.nbFlasks) %>;
                 return data;
             }
-<<<<<<< Updated upstream
             let data=importJson();
         </script>
-=======
-
-            bool = true;
-
-            for (let i = 0; i < 4 && bool; i++) {   // looping through to find not 0
-                if (tab[X][i] === 0) {
-                    nbX = i + 1;
-                }
-                else {
-                    colorX = tab[X][i];
-                    bool = false
-                }
-            }
-            if (nbx > nbX || (colorx != colorX && colorX != 0)) {    // If more color than free space, don't execute and set return value to false
-                result = false;                                   // if colors not same we also return false
-            }
-            else {           // Else, set return value to true and make the translation
-                result = true;
-                for(let i=0;i<nbx;i++){
-                    tab[X][(nbX-1)-(nbx - 1 - i)] = tab[x][start + i];
-                    tab[x][start + i] = 0;
-		        }
-            }
-            return result;
-        }
-
-        function importJson(){
-            let data =
-            {
-                "nbColors":0,
-                "nbFlasks":0,
-                "flasks": []
-            }
-            data.flasks =<%= JSON.stringify(map.flasks) %>;
-            data.nbColors =<%= JSON.stringify(map.nbColors) %>;
-            data.nbFlasks =<%= JSON.stringify(map.nbFlasks) %>;
-            return data;
-        }
-
-
-        let data=importJson();
-    
-    
-    </script>
-    -->
->>>>>>> Stashed changes
     </div>
-    <!--
-    <button class="restart">Restart</button>
-    <button class="redo">Redo</button>
-    <div class="niveau">
-        <button class="niveau-facile">Facile</button>
-        <button class="niveau-moyen">Moyen</button>
-        <button class="niveau-difficile">Difficile</button>
-    </div>
-    -->
+
 </main>
 <footer>
     <%- include('templates/footer.ejs'); %>

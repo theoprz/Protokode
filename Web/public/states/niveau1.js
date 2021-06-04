@@ -1,4 +1,4 @@
-var niveau1 = function(game) {};
+let niveau1 = function(game) {};
 
 niveau1.prototype = {
 
@@ -7,17 +7,17 @@ niveau1.prototype = {
   },
 
   addMenuOption: function(text, callback) {
-    var optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
-    var txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 50, text, optionStyle);
+    let optionStyle = { font: '30pt TheMinion', fill: 'white', align: 'left', stroke: 'rgba(0,0,0,0)', srokeThickness: 4};
+    let txt = game.add.text(game.world.centerX, (this.optionCount * 80) + 0, text, optionStyle);
     txt.anchor.setTo(0.5);
     txt.stroke = "rgba(0,0,0,0";
     txt.strokeThickness = 4;
-    var onOver = function (target) {
+    let onOver = function (target) {
       target.fill = "#FF0000";
       target.stroke = "rgba(200,200,200,0.5)";
       txt.useHandCursor = true;
     };
-    var onOut = function (target) {
+    let onOut = function (target) {
       target.fill = "white";
       target.stroke = "rgba(0,0,0,0)";
       txt.useHandCursor = false;
@@ -39,23 +39,25 @@ niveau1.prototype = {
 
     
     this.addMenuOption('Level 1', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen", true, false, {level: [[0,0,0,1],[0,1,1,1]], levelNumber: 1});
     });
     this.addMenuOption('Level 2', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen", true, false, {level: [[1,2,1,2],[0,0,0,0],[1,2,1,2]], levelNumber: 2});
     });
     this.addMenuOption('Level 3', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen", true, false, {level: [[1,2,3,1],[1,2,3,3],[2,3,1,2],[0,0,0,0],[0,0,0,0]], levelNumber: 3});
     });
     this.addMenuOption('Level 4', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen", true, false, {level: [[1,2,1,2],[0,0,0,0],[1,2,1,2]], levelNumber: 4});
     });
     this.addMenuOption('Level 5', function (e) {
-      this.game.state.start("GameOver");
+      this.game.state.start("gamescreen", true, false, {level: [[1,2,1,2],[0,0,0,0],[1,2,1,2]], levelNumber: 5});
     });
+    
     this.addMenuOption('<- Back', function () {
         game.state.start("Game");
       });
     
   }
 };
+

@@ -51,11 +51,9 @@ Credits.prototype = {
 
   create: function () {
     this.stage.disableVisibilityChange = true;
-    /*if (gameOptions.playMusic) {
-      musicPlayer.stop();
-      musicPlayer = game.add.audio('exit');
-      musicPlayer.play();
-    }*/
+    let music = game.add.audio('credit-musique');
+    music.play();
+
 
     let bg = game.add.sprite(0, 0, 'background3');
     this.addCredit('Game Developer', 'Porzio Theo');
@@ -66,6 +64,7 @@ Credits.prototype = {
     this.addCredit('Web Developer', 'Pruvot Quentin');
     this.addCredit('for playing', 'Thank you');
     this.addMenuOption('<- Back', function (e) {
+      music.stop();
       game.state.start("GameMenu");
     });
     game.add.tween(bg).to({alpha: 0}, 20000, Phaser.Easing.Cubic.Out, true, 40000);
